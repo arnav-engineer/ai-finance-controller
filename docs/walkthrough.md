@@ -79,6 +79,17 @@ Below is the verified output from running the main reconciliation pipeline (`uv 
   REC_0049   | LEDGER   | ₹17471.53    | REF_ORPHAN_04        | TRUE_SINGLETON
   REC_0050   | LEDGER   | ₹4500.02     | REF_ORPHAN_05        | TRUE_SINGLETON
 ===========================================================================
+
+======================================================================
+        SUSTAINABILITY & CARBON EMISSION AUDIT (CodeCarbon)
+======================================================================
+  Target Workload Records    : 50 transactions
+  Region / Grid Energy ISO   : IND
+  Total Carbon Emissions     : 121.2945 mg CO2eq (0.00012129 kg)
+  Emissions Per Transaction  : 2.4259 mg CO2eq / tx
+  Total Energy Consumption   : 0.00017001 kWh
+  CodeCarbon Tracker Status  : ACTIVE (Audited)
+======================================================================
 ```
 
 ---

@@ -40,7 +40,8 @@ CREATE TABLE IF NOT EXISTS audit_log (
             'HYPOTHESIS_PROVEN',
             'HYPOTHESIS_REJECTED',
             'EXCEPTION_FLAGGED',
-            'HUMAN_APPROVED'
+            'HUMAN_APPROVED',
+            'CARBON_EMISSIONS_AUDITED'
         )
     ),
     actor TEXT NOT NULL CHECK (
@@ -52,7 +53,8 @@ CREATE TABLE IF NOT EXISTS audit_log (
             'LAYER2_LLM',
             'LAYER3_HYPOTHESIS',
             'EVALUATOR',
-            'HUMAN_OPERATOR'
+            'HUMAN_OPERATOR',
+            'CODECARBON_TRACKER'
         )
     ),
     record_ids JSON NOT NULL,
@@ -419,6 +421,35 @@ class AuditLogger:
             )
 
         return exception_id
+
+    def log_event(
+        self,
+        batch_id: str,
+        event_type: str,
+        actor: str = "SYSTEM",
+        rule_name: str = "custom_event",
+        confidence: float = 1.0,
+        details: dict[str, Any] | None = None,
+    ) -> int:
+        """Logs a generic event into audit_log and returns the generated audit_id."""
+        cursor = self.conn.cursor()
+        with self.conn:
+            cursor.execute(
+                """
+                INSERT INTO audit_log (batch_id, event_type, actor, record_ids, confidence, rule_name, details)
+                VALUES (?, ?, ?, '[]', ?, ?, ?)
+                """,
+                (
+                    batch_id,
+                    event_type,
+                    actor,
+                    confidence,
+                    rule_name,
+                    json.dumps(details or {}),
+                ),
+            )
+            audit_id = cursor.lastrowid
+        return audit_id or 0
 
     def get_record_history(self, record_id: str) -> list[dict[str, Any]]:
         """Queries the full evidence trail for a specific record for interrogation chat."""

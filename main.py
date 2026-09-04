@@ -1,3 +1,4 @@
+from src.carbon_tracker import AuditCarbonTracker
 from src.clustering import ClusteringEngine
 from src.data_generator import SyntheticDataGenerator
 from src.db import AuditLogger, init_db
@@ -16,7 +17,11 @@ def run_pipeline(batch_id: str = "batch_50", total_records: int = 50, db_file: s
       3. Pass 2: ClusteringEngine (Categorical & DBSCAN Sub-Clustering)
       4. Pass 3: HypothesisEngine (Groq API Powered Pattern Discovery & Exception Classification)
       5. Evaluation Scorecard Report
+      6. CodeCarbon Sustainability & Energy Footprint Audit
     """
+    carbon_tracker = AuditCarbonTracker()
+    carbon_tracker.start()
+
     print("\n" + "=" * 70)
     print(f"   STARTING RECONCILIATION PIPELINE (Batch: {batch_id}, Size: {total_records} Records)")
     print("=" * 70)
@@ -62,6 +67,16 @@ def run_pipeline(batch_id: str = "batch_50", total_records: int = 50, db_file: s
     evaluator = Evaluator(conn)
     scorecard = evaluator.evaluate_batch(batch_id)
     evaluator.print_scorecard(scorecard)
+
+    # --- STAGE 6: Carbon Footprint & Energy Audit (CodeCarbon) ---
+    carbon_metrics = carbon_tracker.stop(total_records=total_records)
+    logger.log_event(
+        batch_id=batch_id,
+        event_type="CARBON_EMISSIONS_AUDITED",
+        actor="CODECARBON_TRACKER",
+        details=carbon_metrics,
+    )
+    carbon_tracker.print_sustainability_scorecard(carbon_metrics)
 
     conn.close()
 
