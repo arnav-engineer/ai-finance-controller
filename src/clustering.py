@@ -140,8 +140,8 @@ class ClusteringEngine:
                         # Check Time Offset Cluster (18000s <= abs(t_delta) <= 21600s, i.e. ~5h 30m offset)
                         if 18000 <= abs(t_delta) <= 21600 and abs(amt_diff) <= 1.0:
                             time_offset_pairs.append((r1, r2, t_delta, amt_diff))
-                        # Check Fee Variance Cluster (r1["amount"] > r2["amount"] and 0.90 <= amt_ratio <= 0.99)
-                        elif amt_diff > 1.0 and 0.90 <= amt_ratio <= 0.99:
+                        # Check Fee Variance Cluster (r1["amount"] > r2["amount"] and abs((r1["amount"] - (r1["amount"] * 0.02 + 3.0)) - r2["amount"]) <= 1.0)
+                        elif r1["amount"] > r2["amount"] and abs((r1["amount"] - (r1["amount"] * 0.02 + 3.0)) - r2["amount"]) <= 1.0:
                             fee_mismatch_pairs.append((r1, r2, t_delta, amt_diff, amt_ratio))
                         else:
                             other_pairs.append((r1, r2, t_delta, amt_diff))

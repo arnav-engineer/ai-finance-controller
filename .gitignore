@@ -17,3 +17,6 @@ plan.md
 *.db-journal
 *.db-wal
 
+# Environment
+.env
+

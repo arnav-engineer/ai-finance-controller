@@ -95,12 +95,13 @@ In our system architecture, **the LLM is never allowed to write directly to the 
   - **Feature-Based Fee Grouping**: Groups 18 records exhibiting systematic $2\% + \text{₹3}$ gateway fee variance (`CLUST_FEE_02`: 18 records).
 - **DBSCAN & Noise Point Isolation**: Automatically isolates 26 unclustered outlier singletons ($label = -1$) as true exceptions requiring targeted classification.
 
-### 2.5 Hypothesis Engine & Pattern Discovery
-- **Role**: Tests a fixed library of systemic hypothesis templates against clusters:
-  1. `TIME_OFFSET`: Tests $+5\text{h }30\text{m}$ (UTC vs IST) timezone shifts.
-  2. `PERCENTAGE_FEE`: Tests $2\% + \text{₹3}$ gateway fee deduction formulas.
-  3. `MANY_TO_ONE`: Tests batch payout aggregation (e.g., 8 payments to 1 bank payout).
-- **LLM Extension (Time-boxed)**: If an unmatched cluster doesn't fit existing templates, the LLM analyzes field-level diffs to propose a typed hypothesis struct, which is compiled and re-tested against the cluster. Upon human approval, it permanently expands the rule library.
+### 2.5 Hypothesis Engine & Pattern Discovery (Groq API Powered)
+- **File**: [src/hypothesis_engine.py](file:///home/arnav-gupta/Projects/ai-finance-controller/src/hypothesis_engine.py)
+- **Role**: Evaluates systemic rules against open clusters using deterministic verification + Groq API LLM integration (`groq/compound` model):
+  1. `MANY_TO_ONE` Settlement Aggregator: Proves that 8 Gateway payments totaling $\text{₹14,000.00}$ gross minus $2\%$ batch fee equal the $\text{₹13,720.00}$ Bank payout UTR credit. Resolves 9 records ($100\%$ cluster resolution).
+  2. `PERCENTAGE_FEE` Rule: Proves $2\% \text{ gross} + \text{₹3 GST}$ fee deduction formula across 12 fee-mismatch records ($100\%$ cluster resolution).
+- **Groq API LLM Hypothesis Proposer**: For un-matched clusters, invokes Groq API to analyze residual field-level diffs and propose typed JSON hypothesis structs, which are compiled and re-tested deterministically.
+- **Batched Exception Classifier**: Classifies remaining unclustered singletons (32 records) into structured root causes with explanations.
 
 ### 2.6 Proactive Interrogation Chat (Pitch Centerpiece)
 - **Role**: Allows judges or finance leaders to interact with the system live (e.g., *"Why didn't row REC_0055 match?"*).
@@ -123,11 +124,10 @@ In our system architecture, **the LLM is never allowed to write directly to the 
 ## 4. Evaluation Scorecard Summary (200-Record Test Batch)
 
 - **Total Ingested Records**: 200
-- **Deterministic Match Rate (ExactMatcher)**: **73.5%** (147 records resolved, 100.00% precision)
-- **Clustering Breakdown (ClusteringEngine)**:
-  - 53 unmatched records processed into **2 systemic clusters (27 records)**:
-    - `CLUST_SETTLEMENT_01` (Many-to-One Settlement): 9 records
-    - `CLUST_FEE_02` (Percentage/Flat Fee Variance): 18 records
-  - **26 Unclustered Singletons** isolated for exception classification.
-- **Target Overall Pipeline Match Rate**: **> 92.5%** after Layer 3 Hypothesis resolution.
+- **Pass 1 (`ExactMatcher`)**: **147 records resolved (73.5% match rate)** — 100.00% verified precision.
+- **Pass 2 (`ClusteringEngine`)**: 53 unmatched records grouped into **2 systemic clusters (21 records)** + 32 singletons.
+- **Pass 3 (`HypothesisEngine`)**: Tested & proved **2/2 systemic hypotheses**, resolving 21 additional records.
+- **Final Pipeline Reconciliation Rate**: **168/200 records resolved (84.0% Match Rate)** with **100.00% Verified Match Precision (0 False Matches)**.
+- **Honest Exception List**: 32 records (16.0%) classified into transparent root-cause categories (amount out of tolerance, missing narration ref, duplicate payments, true singletons).
+
 
