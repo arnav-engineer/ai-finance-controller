@@ -198,10 +198,11 @@ class HumanInTheLoopCLI:
             print("  2. Interrogate Record (Proactive Chat Q&A)")
             print("  3. Test Custom Human Rule Live")
             print("  4. View Evaluation Scorecard")
-            print("  5. Exit")
+            print("  5. View Unmatched Exception Transactions")
+            print("  6. Exit")
             print("=" * 60)
 
-            choice = input("Enter choice (1-5): ").strip()
+            choice = input("Enter choice (1-6): ").strip()
             if choice == "1":
                 hyp_ids = self.show_pending_hypotheses(batch_id)
                 user_inp = input("Enter Hypothesis ID or index number (1, 2) to approve (or press Enter to skip): ").strip()
@@ -225,10 +226,23 @@ class HumanInTheLoopCLI:
                 scorecard = evaluator.evaluate_batch(batch_id)
                 evaluator.print_scorecard(scorecard)
             elif choice == "5":
+                evaluator = Evaluator(self.conn)
+                report = evaluator.evaluate_batch(batch_id)
+                unmatched = report.get("unmatched_details", [])
+                print("\n" + "=" * 75)
+                print("  UNMATCHED EXCEPTION TRANSACTIONS (LINE-BY-LINE DETAIL)")
+                print("=" * 75)
+                print(f"  {'RECORD ID':<10} | {'SOURCE':<8} | {'AMOUNT (₹)':<12} | {'REF / EXT ID':<20} | {'CATEGORY'}")
+                print("  " + "-" * 71)
+                for item in unmatched:
+                    ref_disp = item['reference_id'] if item['reference_id'] != 'NONE' else item['external_id']
+                    print(f"  {item['record_id']:<10} | {item['source']:<8} | ₹{item['amount']:<11.2f} | {ref_disp:<20} | {item['category']}")
+                print("=" * 75 + "\n")
+            elif choice == "6":
                 print("Exiting HITL CLI. Goodbye!")
                 break
             else:
-                print("Invalid choice. Please enter 1-5.")
+                print("Invalid choice. Please enter 1-6.")
 
 
 if __name__ == "__main__":

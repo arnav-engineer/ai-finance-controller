@@ -14,6 +14,7 @@ class Evaluator:
       - Precision (False Positive Rate)
       - Recall / Match Rate
       - Confusion Matrix for Exception Classification
+      - Detailed Unmatched Transactions List
       - Summary Scorecard Report
     """
 
@@ -61,7 +62,6 @@ class Evaluator:
             )
             gt_ids = set(r[0] for r in cursor.fetchall())
 
-            # A match is correct if all matched records share the exact same non-None gt_match_id
             if len(gt_ids) == 1 and None not in gt_ids:
                 correct_matches += len(rec_ids)
             else:
@@ -82,13 +82,15 @@ class Evaluator:
         recall = (correct_matches / gt_matchable_total) if gt_matchable_total > 0 else 0.0
         overall_match_rate = matched_records_count / total_records if total_records > 0 else 0.0
 
-        # 4. Evaluate Exception Classification Accuracy
+        # 4. Evaluate Exception Classification Accuracy & Fetch Detailed Unmatched Records
         cursor.execute(
             """
-            SELECT e.record_id, e.category, r.gt_exception_type
+            SELECT e.record_id, e.category, r.gt_exception_type, r.source_type, r.amount, r.reference_id, r.external_id, a.details
             FROM exceptions e
             JOIN raw_records r ON e.record_id = r.record_id
+            LEFT JOIN audit_log a ON e.audit_id = a.audit_id
             WHERE e.batch_id = ?
+            ORDER BY e.record_id ASC
             """,
             (batch_id,),
         )
@@ -96,15 +98,37 @@ class Evaluator:
         correct_exceptions = 0
         total_exceptions_evaluated = len(exc_rows)
         exception_breakdown = {}
+        unmatched_details_list = []
 
         for r in exc_rows:
+            rec_id = r[0]
             cat = r[1]
             gt_cat = r[2]
+            source = r[3]
+            amount = r[4]
+            ref_id = r[5] or "NONE"
+            ext_id = r[6] or "NONE"
+            audit_dt = json.loads(r[7]) if isinstance(r[7], str) else (r[7] or {})
+
+            explanation = audit_dt.get("explanation", f"Record {rec_id} flagged as {cat}")
+
             exception_breakdown[cat] = exception_breakdown.get(cat, 0) + 1
             if gt_cat and cat == gt_cat:
                 correct_exceptions += 1
             elif not gt_cat and cat == "TRUE_SINGLETON":
                 correct_exceptions += 1
+
+            unmatched_details_list.append(
+                {
+                    "record_id": rec_id,
+                    "source": source,
+                    "amount": amount,
+                    "reference_id": ref_id,
+                    "external_id": ext_id,
+                    "category": cat,
+                    "explanation": explanation,
+                }
+            )
 
         exception_accuracy = (
             (correct_exceptions / total_exceptions_evaluated)
@@ -125,34 +149,46 @@ class Evaluator:
             "false_matches": false_matches,
             "exception_accuracy": round(exception_accuracy, 4),
             "exception_breakdown": exception_breakdown,
+            "unmatched_details": unmatched_details_list,
         }
 
         return report
 
     def print_scorecard(self, report: Dict[str, Any]):
-        """Prints a human-readable evaluation scorecard report."""
-        print("\n" + "=" * 65)
+        """Prints a human-readable evaluation scorecard report and unmatched transactions table."""
+        print("\n" + "=" * 75)
         print(f"        RECONCILIATION EVALUATION SCORECARD ({report['batch_id']})")
-        print("=" * 65)
+        print("=" * 75)
         print(f"  Total Ingested Batch Records  : {report['total_records']}")
         print(f"  Successfully Matched Records  : {report['matched_records']}")
         print(f"  Flagged Exception Records     : {report['exception_records']}")
         print(f"  Overall Batch Match Rate      : {report['overall_match_rate'] * 100:.2f}%")
-        print("-" * 65)
+        print("-" * 75)
         print("  ACCURACY & AUDIT METRICS:")
         print(f"  - Match Precision (Target 100%): {report['match_precision'] * 100:.2f}% (False Positives: {report['false_matches']})")
         print(f"  - Match Recall (Ground Truth)  : {report['match_recall'] * 100:.2f}% ({report['correct_matches']}/{report['gt_matchable_total']} GT records)")
         print(f"  - Exception Categorization Acc : {report['exception_accuracy'] * 100:.2f}%")
-        print("-" * 65)
-        print("  HONEST EXCEPTION LIST BREAKDOWN:")
+        print("-" * 75)
+        print("  HONEST EXCEPTION SUMMARY:")
         for cat, count in report["exception_breakdown"].items():
             print(f"    * {cat:<25}: {count} records")
-        print("=" * 65 + "\n")
+        
+        # Display line-by-line detailed Unmatched Exception Transactions
+        unmatched = report.get("unmatched_details", [])
+        if unmatched:
+            print("-" * 75)
+            print("  UNMATCHED EXCEPTION TRANSACTIONS (LINE-BY-LINE DETAIL):")
+            print(f"  {'RECORD ID':<10} | {'SOURCE':<8} | {'AMOUNT (₹)':<12} | {'REF / EXT ID':<20} | {'CATEGORY'}")
+            print("  " + "-" * 71)
+            for item in unmatched:
+                ref_disp = item['reference_id'] if item['reference_id'] != 'NONE' else item['external_id']
+                print(f"  {item['record_id']:<10} | {item['source']:<8} | ₹{item['amount']:<11.2f} | {ref_disp:<20} | {item['category']}")
+        print("=" * 75 + "\n")
 
 
 if __name__ == "__main__":
     conn = sqlite3.connect("reconciliation.db")
     evaluator = Evaluator(conn)
-    report = evaluator.evaluate_batch("batch_200")
+    report = evaluator.evaluate_batch("batch_50")
     evaluator.print_scorecard(report)
     conn.close()
