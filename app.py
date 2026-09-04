@@ -90,7 +90,9 @@ batch_size = st.sidebar.slider(
 random_seed = st.sidebar.slider("Synthetic Seed", min_value=1, max_value=999, value=42)
 
 st.sidebar.subheader("Groq LLM Status")
-groq_api_key = os.getenv("GROQ_API_KEY", "")
+groq_api_key = os.getenv("GROQ_API_KEY", "") or getattr(st, "secrets", {}).get("GROQ_API_KEY", "")
+if groq_api_key:
+    os.environ["GROQ_API_KEY"] = groq_api_key
 has_groq = bool(groq_api_key and not groq_api_key.startswith("gsk_your_"))
 st.sidebar.info(f"Groq API: {'[ACTIVE] (groq/compound)' if has_groq else '[SIMULATED] FALLBACK'}")
 

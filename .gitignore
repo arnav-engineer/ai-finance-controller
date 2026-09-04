@@ -17,6 +17,7 @@ plan.md
 *.db-journal
 *.db-wal
 
-# Environment
+# Environment & Secrets
 .env
+.streamlit/secrets.toml
 
