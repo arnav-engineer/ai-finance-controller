@@ -251,7 +251,7 @@ elif st.session_state.step == 3:
         col_c2.metric("Singletons Isolated", f"{p2['unclustered_singletons']}")
 
         cursor = conn.cursor()
-        cursor.execute("SELECT cluster_id, cluster_type, record_count, features FROM clusters WHERE batch_id = ?", (batch_id,))
+        cursor.execute("SELECT cluster_id, clustering_method, record_count, features FROM clusters WHERE batch_id = ?", (batch_id,))
         cluster_rows = cursor.fetchall()
         for row in cluster_rows:
             cid, ctype, rcount, feats = row
