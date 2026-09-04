@@ -1,9 +1,9 @@
-import sqlite3
 import pytest
-from src.db import init_db, AuditLogger
-from src.data_generator import SyntheticDataGenerator
-from src.exact_matcher import ExactMatcher
+
 from src.clustering import ClusteringEngine
+from src.data_generator import SyntheticDataGenerator
+from src.db import AuditLogger, init_db
+from src.exact_matcher import ExactMatcher
 
 
 @pytest.fixture
@@ -14,7 +14,7 @@ def post_matcher_db(tmp_path):
     logger = AuditLogger(conn)
 
     generator = SyntheticDataGenerator(seed=42)
-    records, eval_manifest = generator.generate_batch("batch_test_cluster", total_records=50)
+    records, _eval_manifest = generator.generate_batch("batch_test_cluster", total_records=50)
     logger.ingest_records("batch_test_cluster", records)
 
     matcher = ExactMatcher(conn)

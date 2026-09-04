@@ -1,8 +1,8 @@
 import json
 import random
 import uuid
-from datetime import datetime, timedelta, timezone
-from typing import List, Dict, Any, Tuple
+from datetime import UTC, datetime, timedelta
+from typing import Any
 
 
 class SyntheticDataGenerator:
@@ -18,7 +18,7 @@ class SyntheticDataGenerator:
 
     def __init__(self, seed: int = 42):
         random.seed(seed)
-        self.base_time = datetime(2026, 9, 1, 10, 0, 0, tzinfo=timezone.utc)
+        self.base_time = datetime(2026, 9, 1, 10, 0, 0, tzinfo=UTC)
 
     def _random_amount(self) -> float:
         """Generates realistic transaction amounts in INR (₹150 to ₹48,000)."""
@@ -26,7 +26,7 @@ class SyntheticDataGenerator:
 
     def generate_batch(
         self, batch_id: str = "batch_50", total_records: int = 50
-    ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
+    ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         """
         Generates a batch of synthetic multi-source entries.
         
@@ -34,8 +34,8 @@ class SyntheticDataGenerator:
             records: List of normalized record dicts ready for raw_records table ingestion.
             eval_manifest: Ground truth summary map for evaluation harness.
         """
-        records: List[Dict[str, Any]] = []
-        eval_manifest: Dict[str, Any] = {
+        records: list[dict[str, Any]] = []
+        eval_manifest: dict[str, Any] = {
             "batch_id": batch_id,
             "ground_truth_matches": {},
             "ground_truth_exceptions": {},

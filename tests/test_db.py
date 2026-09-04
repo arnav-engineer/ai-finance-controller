@@ -1,7 +1,6 @@
-import os
-import sqlite3
 import pytest
-from src.db import init_db, AuditLogger
+
+from src.db import AuditLogger, init_db
 
 
 @pytest.fixture
@@ -17,7 +16,7 @@ def test_init_db(temp_db):
     """Verifies that init_db creates all required tables and enables WAL mode."""
     cursor = temp_db.cursor()
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tables = set(row[0] for row in cursor.fetchall())
+    tables = {row[0] for row in cursor.fetchall()}
 
     expected_tables = {"raw_records", "audit_log", "matches", "clusters", "hypotheses", "exceptions"}
     assert expected_tables.issubset(tables)

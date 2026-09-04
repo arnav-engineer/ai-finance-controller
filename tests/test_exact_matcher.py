@@ -1,7 +1,7 @@
-import sqlite3
 import pytest
-from src.db import init_db, AuditLogger
+
 from src.data_generator import SyntheticDataGenerator
+from src.db import AuditLogger, init_db
 from src.exact_matcher import ExactMatcher
 
 
@@ -22,7 +22,7 @@ def populated_db(tmp_path):
 
 def test_exact_matcher_execution_and_precision(populated_db):
     """Verifies that ExactMatcher matches happy-path pairs/triplets with 100% precision."""
-    conn, eval_manifest = populated_db
+    conn, _eval_manifest = populated_db
     matcher = ExactMatcher(conn)
 
     results = matcher.run("batch_test_matcher")
@@ -39,7 +39,7 @@ def test_exact_matcher_execution_and_precision(populated_db):
         rec_ids = eval(r_ids_json) if isinstance(r_ids_json, str) else r_ids_json
         placeholders = ",".join("?" for _ in rec_ids)
         cursor.execute(f"SELECT gt_match_id FROM raw_records WHERE record_id IN ({placeholders})", rec_ids)
-        gt_ids = set(row[0] for row in cursor.fetchall())
+        gt_ids = {row[0] for row in cursor.fetchall()}
 
         assert len(gt_ids) == 1, f"False positive match detected in record group: {rec_ids}"
         assert None not in gt_ids

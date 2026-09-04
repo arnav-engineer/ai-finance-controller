@@ -1,7 +1,7 @@
-import sqlite3
 import json
+import sqlite3
 import uuid
-from typing import List, Dict, Any, Optional
+from typing import Any
 
 SCHEMA_DDL = """
 PRAGMA foreign_keys = ON;
@@ -165,7 +165,7 @@ class AuditLogger:
             cursor.execute("DELETE FROM audit_log WHERE batch_id = ?", (batch_id,))
             cursor.execute("DELETE FROM raw_records WHERE batch_id = ?", (batch_id,))
 
-    def ingest_records(self, batch_id: str, records: List[Dict[str, Any]]) -> int:
+    def ingest_records(self, batch_id: str, records: list[dict[str, Any]]) -> int:
         """Ingests raw records into raw_records and logs RECORD_INGESTED in audit_log."""
         cursor = self.conn.cursor()
         ingested_count = 0
@@ -219,8 +219,8 @@ class AuditLogger:
         layer: str,
         rule_name: str,
         confidence: float,
-        record_ids: List[str],
-        details: Dict[str, Any],
+        record_ids: list[str],
+        details: dict[str, Any],
         actor: str = "LAYER1_ENGINE",
         event_type: str = "LAYER1_EXACT_MATCH",
     ) -> str:
@@ -278,8 +278,8 @@ class AuditLogger:
         batch_id: str,
         cluster_id: str,
         clustering_method: str,
-        record_ids: List[str],
-        features: Dict[str, Any],
+        record_ids: list[str],
+        features: dict[str, Any],
     ) -> None:
         """Atomically logs cluster creation to audit_log and clusters table."""
         cursor = self.conn.cursor()
@@ -317,12 +317,12 @@ class AuditLogger:
         batch_id: str,
         hypothesis_id: str,
         hypothesis_type: str,
-        parameters: Dict[str, Any],
-        cluster_id: Optional[str],
+        parameters: dict[str, Any],
+        cluster_id: str | None,
         match_rate: float,
         proven: bool,
         source: str,
-        details: Dict[str, Any],
+        details: dict[str, Any],
         actor: str = "LAYER3_HYPOTHESIS",
     ) -> None:
         """Logs a hypothesis test and result into audit_log and hypotheses table."""
@@ -376,8 +376,8 @@ class AuditLogger:
         batch_id: str,
         record_id: str,
         category: str,
-        details: Dict[str, Any],
-        cluster_id: Optional[str] = None,
+        details: dict[str, Any],
+        cluster_id: str | None = None,
     ) -> str:
         """Logs an exception for an unresolvable record."""
         exception_id = f"EXC_{uuid.uuid4().hex[:8]}"
@@ -420,7 +420,7 @@ class AuditLogger:
 
         return exception_id
 
-    def get_record_history(self, record_id: str) -> List[Dict[str, Any]]:
+    def get_record_history(self, record_id: str) -> list[dict[str, Any]]:
         """Queries the full evidence trail for a specific record for interrogation chat."""
         cursor = self.conn.cursor()
         cursor.execute(
@@ -449,7 +449,7 @@ class AuditLogger:
             )
         return history
 
-    def get_batch_summary(self, batch_id: str) -> Dict[str, Any]:
+    def get_batch_summary(self, batch_id: str) -> dict[str, Any]:
         """Returns batch reconciliation metrics (matches, exceptions, match rate)."""
         cursor = self.conn.cursor()
 

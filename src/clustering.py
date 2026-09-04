@@ -1,12 +1,11 @@
 import json
 import sqlite3
-import numpy as np
 from datetime import datetime
-from typing import List, Dict, Any, Tuple, Set
-from sklearn.cluster import DBSCAN
-from sklearn.preprocessing import StandardScaler
+from typing import Any
 
-from src.db import init_db, AuditLogger
+import numpy as np
+
+from src.db import AuditLogger, init_db
 
 
 class ClusteringEngine:
@@ -28,7 +27,7 @@ class ClusteringEngine:
             ts_str = ts_str[:-1] + "+00:00"
         return datetime.fromisoformat(ts_str)
 
-    def _fetch_unmatched_records(self, batch_id: str) -> List[Dict[str, Any]]:
+    def _fetch_unmatched_records(self, batch_id: str) -> list[dict[str, Any]]:
         cursor = self.conn.cursor()
         cursor.execute(
             """
@@ -64,16 +63,16 @@ class ClusteringEngine:
             )
         return records
 
-    def run(self, batch_id: str = "batch_200") -> Dict[str, Any]:
+    def run(self, batch_id: str = "batch_200") -> dict[str, Any]:
         unmatched = self._fetch_unmatched_records(batch_id)
-        clustered_record_ids: Set[str] = set()
+        clustered_record_ids: set[str] = set()
 
         clusters_created = []
 
         # =========================================================================
         # STEP 1: Structural Settlement Grouping (Many-to-One Payout Batches)
         # =========================================================================
-        settlement_groups: Dict[str, List[Dict[str, Any]]] = {}
+        settlement_groups: dict[str, list[dict[str, Any]]] = {}
         for rec in unmatched:
             set_id = rec.get("raw_data", {}).get("settlement_id") or rec.get("reference_id")
             if set_id and ("set_" in str(set_id) or "SETTLEMENT" in str(set_id)):
@@ -114,7 +113,7 @@ class ClusteringEngine:
         # =========================================================================
         remaining_unmatched = [r for r in unmatched if r["record_id"] not in clustered_record_ids]
 
-        ref_pairs: Dict[str, List[Dict[str, Any]]] = {}
+        ref_pairs: dict[str, list[dict[str, Any]]] = {}
         for rec in remaining_unmatched:
             ref = rec.get("reference_id")
             if ref:

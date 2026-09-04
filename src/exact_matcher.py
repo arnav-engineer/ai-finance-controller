@@ -1,8 +1,9 @@
 import json
 import sqlite3
 from datetime import datetime
-from typing import List, Dict, Any, Set
-from src.db import init_db, AuditLogger
+from typing import Any
+
+from src.db import AuditLogger, init_db
 
 
 class ExactMatcher:
@@ -25,7 +26,7 @@ class ExactMatcher:
             ts_str = ts_str[:-1] + "+00:00"
         return datetime.fromisoformat(ts_str)
 
-    def _fetch_unmatched_records(self, batch_id: str) -> List[Dict[str, Any]]:
+    def _fetch_unmatched_records(self, batch_id: str) -> list[dict[str, Any]]:
         """Fetches all raw records with UNMATCHED status for the batch."""
         cursor = self.conn.cursor()
         cursor.execute(
@@ -61,7 +62,7 @@ class ExactMatcher:
             )
         return records
 
-    def run(self, batch_id: str = "batch_200") -> Dict[str, Any]:
+    def run(self, batch_id: str = "batch_200") -> dict[str, Any]:
         """
         Executes exact matching pipeline for the specified batch.
         
@@ -69,7 +70,7 @@ class ExactMatcher:
             summary: Execution stats including total matched records, matches by pass, and remaining unmatched.
         """
         unmatched_records = self._fetch_unmatched_records(batch_id)
-        matched_record_ids: Set[str] = set()
+        matched_record_ids: set[str] = set()
 
         stats = {
             "batch_id": batch_id,
@@ -82,7 +83,7 @@ class ExactMatcher:
         }
 
         # Group records by reference_id / UTR keys
-        ref_groups: Dict[str, List[Dict[str, Any]]] = {}
+        ref_groups: dict[str, list[dict[str, Any]]] = {}
         for rec in unmatched_records:
             ref = rec.get("reference_id")
             utr = rec.get("raw_data", {}).get("utr") if isinstance(rec.get("raw_data"), dict) else None
@@ -103,8 +104,7 @@ class ExactMatcher:
                 r_bk = sources.get("BANK")
                 r_ld = sources.get("LEDGER")
 
-                if r_gw and r_bk and r_ld:
-                    if r_gw["amount"] == r_bk["amount"] == r_ld["amount"]:
+                if r_gw and r_bk and r_ld and (r_gw["amount"] == r_bk["amount"] == r_ld["amount"]):
                         rec_ids = [r_gw["record_id"], r_bk["record_id"], r_ld["record_id"]]
                         details = {
                             "match_type": "1_TO_1_TO_1_TRIPLET",
@@ -138,7 +138,7 @@ class ExactMatcher:
             if len(unmatched_items) < 2:
                 continue
 
-            by_source: Dict[str, List[Dict[str, Any]]] = {}
+            by_source: dict[str, list[dict[str, Any]]] = {}
             for r in unmatched_items:
                 by_source.setdefault(r["source_type"], []).append(r)
 

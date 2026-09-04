@@ -1,11 +1,11 @@
-import sqlite3
 import pytest
-from src.db import init_db, AuditLogger
-from src.data_generator import SyntheticDataGenerator
-from src.exact_matcher import ExactMatcher
-from src.clustering import ClusteringEngine
-from src.hypothesis_engine import HypothesisEngine
+
 from src.cli import HumanInTheLoopCLI
+from src.clustering import ClusteringEngine
+from src.data_generator import SyntheticDataGenerator
+from src.db import AuditLogger, init_db
+from src.exact_matcher import ExactMatcher
+from src.hypothesis_engine import HypothesisEngine
 
 
 @pytest.fixture
@@ -16,7 +16,7 @@ def cli_db(tmp_path):
     logger = AuditLogger(conn)
 
     generator = SyntheticDataGenerator(seed=42)
-    records, eval_manifest = generator.generate_batch("batch_cli_test", total_records=50)
+    records, _eval_manifest = generator.generate_batch("batch_cli_test", total_records=50)
     logger.ingest_records("batch_cli_test", records)
 
     ExactMatcher(conn).run("batch_cli_test")

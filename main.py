@@ -1,11 +1,9 @@
-import json
-import sqlite3
-from src.db import init_db, AuditLogger
-from src.data_generator import SyntheticDataGenerator
-from src.exact_matcher import ExactMatcher
 from src.clustering import ClusteringEngine
-from src.hypothesis_engine import HypothesisEngine
+from src.data_generator import SyntheticDataGenerator
+from src.db import AuditLogger, init_db
 from src.evaluator import Evaluator
+from src.exact_matcher import ExactMatcher
+from src.hypothesis_engine import HypothesisEngine
 
 
 def run_pipeline(batch_id: str = "batch_50", total_records: int = 50, db_file: str = "reconciliation.db"):
@@ -30,7 +28,7 @@ def run_pipeline(batch_id: str = "batch_50", total_records: int = 50, db_file: s
     logger.clear_batch(batch_id)
 
     generator = SyntheticDataGenerator()
-    records, eval_manifest = generator.generate_batch(batch_id=batch_id, total_records=total_records)
+    records, _eval_manifest = generator.generate_batch(batch_id=batch_id, total_records=total_records)
     
     ingested_count = logger.ingest_records(batch_id, records)
     print(f"  ✓ Ingested {ingested_count} records into '{db_file}' across GATEWAY, BANK, and LEDGER sources.")

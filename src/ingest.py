@@ -1,6 +1,7 @@
 import json
-from src.db import init_db, AuditLogger
+
 from src.data_generator import SyntheticDataGenerator
+from src.db import AuditLogger, init_db
 
 
 def load_and_ingest_batch(
@@ -15,11 +16,11 @@ def load_and_ingest_batch(
         with open(batch_file, "r") as f:
             payload = json.load(f)
             records = payload["records"]
-            eval_manifest = payload["eval_manifest"]
+            _eval_manifest = payload["eval_manifest"]
     except FileNotFoundError:
         print(f"File {batch_file} not found. Generating new 200-record batch...")
         generator = SyntheticDataGenerator()
-        records, eval_manifest = generator.generate_batch(
+        records, _eval_manifest = generator.generate_batch(
             "batch_200", total_records=200
         )
 

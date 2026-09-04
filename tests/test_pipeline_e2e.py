@@ -1,7 +1,7 @@
 import sqlite3
-import pytest
-from src.db import init_db, AuditLogger
+
 from main import run_pipeline
+from src.db import AuditLogger
 
 
 def test_end_to_end_pipeline_50_batch(tmp_path):

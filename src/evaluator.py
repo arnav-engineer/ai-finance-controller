@@ -1,6 +1,6 @@
 import json
 import sqlite3
-from typing import Dict, Any, List
+from typing import Any
 
 
 class Evaluator:
@@ -21,7 +21,7 @@ class Evaluator:
     def __init__(self, conn: sqlite3.Connection):
         self.conn = conn
 
-    def evaluate_batch(self, batch_id: str = "batch_50") -> Dict[str, Any]:
+    def evaluate_batch(self, batch_id: str = "batch_50") -> dict[str, Any]:
         cursor = self.conn.cursor()
 
         # 1. Fetch total record count and status breakdown
@@ -60,7 +60,7 @@ class Evaluator:
                 f"SELECT gt_match_id FROM raw_records WHERE record_id IN ({placeholders})",
                 rec_ids,
             )
-            gt_ids = set(r[0] for r in cursor.fetchall())
+            gt_ids = {r[0] for r in cursor.fetchall()}
 
             if len(gt_ids) == 1 and None not in gt_ids:
                 correct_matches += len(rec_ids)
@@ -113,9 +113,7 @@ class Evaluator:
             explanation = audit_dt.get("explanation", f"Record {rec_id} flagged as {cat}")
 
             exception_breakdown[cat] = exception_breakdown.get(cat, 0) + 1
-            if gt_cat and cat == gt_cat:
-                correct_exceptions += 1
-            elif not gt_cat and cat == "TRUE_SINGLETON":
+            if gt_cat and cat == gt_cat or not gt_cat and cat == "TRUE_SINGLETON":
                 correct_exceptions += 1
 
             unmatched_details_list.append(
@@ -154,7 +152,7 @@ class Evaluator:
 
         return report
 
-    def print_scorecard(self, report: Dict[str, Any]):
+    def print_scorecard(self, report: dict[str, Any]):
         """Prints a human-readable evaluation scorecard report and unmatched transactions table."""
         print("\n" + "=" * 75)
         print(f"        RECONCILIATION EVALUATION SCORECARD ({report['batch_id']})")

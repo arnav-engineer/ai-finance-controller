@@ -1,14 +1,10 @@
-import os
 import json
-import sqlite3
-from typing import Dict, Any, List
+import os
+
 from dotenv import load_dotenv
 
-from src.db import init_db, AuditLogger
+from src.db import AuditLogger, init_db
 from src.evaluator import Evaluator
-from src.exact_matcher import ExactMatcher
-from src.clustering import ClusteringEngine
-from src.hypothesis_engine import HypothesisEngine
 
 load_dotenv()
 
@@ -35,10 +31,10 @@ class HumanInTheLoopCLI:
         if GROQ_AVAILABLE and self.api_key and not self.api_key.startswith("gsk_your_"):
             try:
                 self.groq_client = Groq(api_key=self.api_key)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 print(f"Warning: Groq client init failed: {e}")
 
-    def show_pending_hypotheses(self, batch_id: str = "batch_50") -> List[str]:
+    def show_pending_hypotheses(self, batch_id: str = "batch_50") -> list[str]:
         """Displays hypotheses for Human-in-the-Loop review and returns list of hypothesis IDs."""
         cursor = self.conn.cursor()
         cursor.execute(
@@ -59,7 +55,7 @@ class HumanInTheLoopCLI:
         print("=" * 70)
         hyp_ids = []
         for idx, r in enumerate(rows, start=1):
-            hyp_id, hyp_type, params_json, cluster_id, match_rate, proven, source, audit_id = r
+            hyp_id, hyp_type, params_json, cluster_id, match_rate, proven, source, _audit_id = r
             hyp_ids.append(hyp_id)
             params = json.loads(params_json) if isinstance(params_json, str) else params_json
             status = "✅ PROVEN & APPROVED" if proven else "❓ PENDING HUMAN REVIEW"
@@ -88,7 +84,7 @@ class HumanInTheLoopCLI:
     def interrogate_record(self, raw_record_id: str):
         """Proactive Interrogation Chat: Explains why a record failed to match using stored audit facts."""
         record_id = self._normalize_record_id(raw_record_id)
-        print(f"\n" + "=" * 70)
+        print("\n" + "=" * 70)
         print(f"        PROACTIVE INTERROGATION CHAT: Record {record_id}")
         print("=" * 70)
 
@@ -140,7 +136,7 @@ class HumanInTheLoopCLI:
                     temperature=0.1,
                 )
                 print(f"  {res.choices[0].message.content.strip()}\n")
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 print(f"  ⚠️ LLM chat error: {e}")
         else:
             print("\n  [EVIDENCE SUMMARY]:")
@@ -184,9 +180,9 @@ class HumanInTheLoopCLI:
         match_rate = resolved / len(recs) if recs else 0.0
         print(f"  ✓ Live Test Outcome: {resolved}/{len(recs)} records resolved ({match_rate * 100:.1f}% resolution rate).")
         if match_rate >= 0.80:
-            print(f"  ✅ Rule PROVEN! Ready for Human Approval to commit to database.")
+            print("  ✅ Rule PROVEN! Ready for Human Approval to commit to database.")
         else:
-            print(f"  ❌ Rule failed threshold (requires >= 80.0%).")
+            print("  ❌ Rule failed threshold (requires >= 80.0%).")
 
     def interactive_menu(self, batch_id: str = "batch_50"):
         """Main Interactive Menu for Human-in-the-Loop Operations."""

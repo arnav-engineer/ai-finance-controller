@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "codecarbon>=3.3.0",
     "groq>=1.7.0",
     "numpy>=2.5.2",
     "pytest>=9.1.1",

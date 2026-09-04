@@ -1,10 +1,11 @@
-import os
 import json
+import os
 import sqlite3
-from typing import List, Dict, Any, Optional, Tuple
+from typing import Any
+
 from dotenv import load_dotenv
 
-from src.db import init_db, AuditLogger
+from src.db import AuditLogger, init_db
 
 # Load environment variables from .env
 load_dotenv()
@@ -42,10 +43,10 @@ class HypothesisEngine:
         ):
             try:
                 self.groq_client = Groq(api_key=self.api_key)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 print(f"Warning: Could not initialize Groq client: {e}")
 
-    def _fetch_open_clusters(self, batch_id: str) -> List[Dict[str, Any]]:
+    def _fetch_open_clusters(self, batch_id: str) -> list[dict[str, Any]]:
         cursor = self.conn.cursor()
         cursor.execute(
             """
@@ -70,7 +71,7 @@ class HypothesisEngine:
             )
         return clusters
 
-    def _fetch_records_by_ids(self, record_ids: List[str]) -> List[Dict[str, Any]]:
+    def _fetch_records_by_ids(self, record_ids: list[str]) -> list[dict[str, Any]]:
         if not record_ids:
             return []
         placeholders = ",".join("?" for _ in record_ids)
@@ -107,8 +108,8 @@ class HypothesisEngine:
         return records
 
     def _eval_many_to_one_template(
-        self, cluster: Dict[str, Any], records: List[Dict[str, Any]]
-    ) -> Tuple[bool, float, Dict[str, Any]]:
+        self, cluster: dict[str, Any], records: list[dict[str, Any]]
+    ) -> tuple[bool, float, dict[str, Any]]:
         """Tests Many-to-One Settlement Batch Aggregation template."""
         gw_recs = [r for r in records if r["source_type"] == "GATEWAY"]
         bk_recs = [r for r in records if r["source_type"] == "BANK"]
@@ -139,8 +140,8 @@ class HypothesisEngine:
         return False, 0.0, {}
 
     def _eval_percentage_fee_template(
-        self, cluster: Dict[str, Any], records: List[Dict[str, Any]]
-    ) -> Tuple[bool, float, Dict[str, Any]]:
+        self, cluster: dict[str, Any], records: list[dict[str, Any]]
+    ) -> tuple[bool, float, dict[str, Any]]:
         """Tests 2% + ₹3 Flat Fee Deduction template across pairs."""
         gw_recs = [r for r in records if r["source_type"] == "GATEWAY"]
         bk_recs = [r for r in records if r["source_type"] == "BANK"]
@@ -183,8 +184,8 @@ class HypothesisEngine:
         return proven, match_rate, details
 
     def _call_groq_propose_hypothesis(
-        self, cluster: Dict[str, Any], records: List[Dict[str, Any]]
-    ) -> Optional[Dict[str, Any]]:
+        self, cluster: dict[str, Any], records: list[dict[str, Any]]
+    ) -> dict[str, Any] | None:
         """Invokes Groq API (groq/compound) to analyze cluster diffs and propose a typed hypothesis struct."""
         if not self.groq_client:
             return None
@@ -230,14 +231,14 @@ class HypothesisEngine:
                 print(f"  🤖 [GROQ LLM RESPONSE]:\n{json.dumps(parsed, indent=4)}")
 
             return parsed
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             if self.verbose:
                 print(f"  ⚠️ [GROQ LLM WARNING]: {e}")
             return None
 
     def _call_groq_classify_exceptions(
-        self, singletons: List[Dict[str, Any]]
-    ) -> Dict[str, Dict[str, str]]:
+        self, singletons: list[dict[str, Any]]
+    ) -> dict[str, dict[str, str]]:
         """Calls Groq API to generate root-cause explanations for singletons."""
         if not self.groq_client or not singletons:
             return {}
@@ -280,7 +281,7 @@ class HypothesisEngine:
                 print(f"  🤖 [GROQ LLM CLASSIFICATION OUTPUT]:\n{json.dumps(parsed, indent=4)}")
 
             return parsed
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001
             if self.verbose:
                 print(f"  ⚠️ [GROQ LLM EXCEPTION CLASSIFIER WARNING]: {e}")
             return {}
@@ -354,7 +355,7 @@ class HypothesisEngine:
 
         return classified_count
 
-    def run(self, batch_id: str = "batch_50") -> Dict[str, Any]:
+    def run(self, batch_id: str = "batch_50") -> dict[str, Any]:
         open_clusters = self._fetch_open_clusters(batch_id)
 
         hypotheses_tested = 0
