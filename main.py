@@ -27,6 +27,7 @@ def run_pipeline(batch_id: str = "batch_50", total_records: int = 50, db_file: s
     print("\n[STAGE 1/5] Ingesting Multi-Source Records...")
     conn = init_db(db_file)
     logger = AuditLogger(conn)
+    logger.clear_batch(batch_id)
 
     generator = SyntheticDataGenerator()
     records, eval_manifest = generator.generate_batch(batch_id=batch_id, total_records=total_records)

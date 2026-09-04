@@ -154,6 +154,17 @@ class AuditLogger:
     def __init__(self, conn: sqlite3.Connection):
         self.conn = conn
 
+    def clear_batch(self, batch_id: str):
+        """Clears all records, matches, clusters, hypotheses, and exceptions for a given batch."""
+        cursor = self.conn.cursor()
+        with self.conn:
+            cursor.execute("DELETE FROM matches WHERE batch_id = ?", (batch_id,))
+            cursor.execute("DELETE FROM exceptions WHERE batch_id = ?", (batch_id,))
+            cursor.execute("DELETE FROM hypotheses WHERE batch_id = ?", (batch_id,))
+            cursor.execute("DELETE FROM clusters WHERE batch_id = ?", (batch_id,))
+            cursor.execute("DELETE FROM audit_log WHERE batch_id = ?", (batch_id,))
+            cursor.execute("DELETE FROM raw_records WHERE batch_id = ?", (batch_id,))
+
     def ingest_records(self, batch_id: str, records: List[Dict[str, Any]]) -> int:
         """Ingests raw records into raw_records and logs RECORD_INGESTED in audit_log."""
         cursor = self.conn.cursor()
@@ -163,7 +174,7 @@ class AuditLogger:
             for rec in records:
                 cursor.execute(
                     """
-                    INSERT INTO raw_records (
+                    INSERT OR REPLACE INTO raw_records (
                         record_id, batch_id, source_type, external_id, reference_id,
                         amount, currency, fee, tax, timestamp, status, raw_data,
                         gt_match_id, gt_exception_type
@@ -338,7 +349,7 @@ class AuditLogger:
 
             cursor.execute(
                 """
-                INSERT INTO hypotheses (hypothesis_id, batch_id, hypothesis_type, parameters, cluster_id, match_rate, proven, source, audit_id)
+                INSERT OR REPLACE INTO hypotheses (hypothesis_id, batch_id, hypothesis_type, parameters, cluster_id, match_rate, proven, source, audit_id)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
@@ -389,7 +400,7 @@ class AuditLogger:
 
             cursor.execute(
                 """
-                INSERT INTO exceptions (exception_id, batch_id, record_id, cluster_id, category, status, audit_id)
+                INSERT OR REPLACE INTO exceptions (exception_id, batch_id, record_id, cluster_id, category, status, audit_id)
                 VALUES (?, ?, ?, ?, ?, 'UNRESOLVED', ?)
                 """,
                 (

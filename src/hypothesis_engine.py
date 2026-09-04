@@ -9,7 +9,6 @@ from src.db import init_db, AuditLogger
 # Load environment variables from .env
 load_dotenv()
 
-# Try importing groq client
 try:
     from groq import Groq
     GROQ_AVAILABLE = True
@@ -19,24 +18,20 @@ except ImportError:
 
 class HypothesisEngine:
     """
-    Pass 3: Pattern Discovery & Hypothesis Engine with LLM Integration.
+    Pass 3: Pattern Discovery & Hypothesis Engine with Groq LLM Integration.
     
-    1. Fixed Hypothesis Templates:
-       - MANY_TO_ONE: Settlement Batch Aggregator (8 Gateway payments -> 1 Bank payout)
-       - PERCENTAGE_FEE: Fee Deduction Formula (Gross -> Net after 2% + ₹3 GST)
-       - TIME_OFFSET: Timezone Shift (+5h 30m IST/UTC)
+    1. Groq LLM Hypothesis Proposer:
+       - Uses Groq API (groq/compound) to analyze cluster diffs and propose structured hypotheses.
+       - Compiles & re-tests proposed rules deterministically against real cluster records.
     
-    2. LLM-Proposed Hypothesis Compiler:
-       - Uses Groq API to analyze residual field diffs for novel clusters.
-       - Compiles & re-tests LLM hypotheses deterministically against cluster data.
-    
-    3. Batched LLM Exception Classifier:
-       - Batches singletons to classify root causes for the Honest Exception List.
+    2. Groq LLM Exception Classifier:
+       - Uses Groq API to analyze singletons and generate root-cause explanations.
     """
 
-    def __init__(self, conn: sqlite3.Connection):
+    def __init__(self, conn: sqlite3.Connection, verbose: bool = True):
         self.conn = conn
         self.logger = AuditLogger(conn)
+        self.verbose = verbose
         self.api_key = os.getenv("GROQ_API_KEY", "")
         self.groq_client = None
 
@@ -124,12 +119,11 @@ class HypothesisEngine:
         gross_gw_total = sum(r["amount"] for r in gw_recs)
         bk_total = sum(r["amount"] for r in bk_recs)
 
-        # Formula: Net Bank Payout = Gross GW Total - (Gross GW Total * 0.02)
         batch_fee_2pct = round(gross_gw_total * 0.02, 2)
         expected_net = round(gross_gw_total - batch_fee_2pct, 2)
 
         delta = abs(expected_net - bk_total)
-        if delta <= 1.00:  # Matches within ₹1.00
+        if delta <= 1.00:
             details = {
                 "hypothesis_type": "MANY_TO_ONE",
                 "gross_gateway_total": round(gross_gw_total, 2),
@@ -191,11 +185,10 @@ class HypothesisEngine:
     def _call_groq_propose_hypothesis(
         self, cluster: Dict[str, Any], records: List[Dict[str, Any]]
     ) -> Optional[Dict[str, Any]]:
-        """Calls Groq API to propose a structured hypothesis struct for an unmatched cluster."""
+        """Invokes Groq API (groq/compound) to analyze cluster diffs and propose a typed hypothesis struct."""
         if not self.groq_client:
             return None
 
-        # Format sample record diffs for LLM prompt
         samples = []
         for r in records[:6]:
             samples.append(
@@ -208,42 +201,91 @@ class HypothesisEngine:
                 }
             )
 
-        prompt = f"""
-You are a financial reconciliation expert analyzing an unmatched cluster of payment records.
-Cluster ID: {cluster['cluster_id']}
-Features: {json.dumps(cluster['features'])}
-Sample Records: {json.dumps(samples)}
+        prompt = (
+            f"You are an AI financial reconciliation agent. Analyze this cluster of unmatched records:\n"
+            f"Cluster ID: {cluster['cluster_id']}\n"
+            f"Features: {json.dumps(cluster['features'])}\n"
+            f"Sample Record Diffs: {json.dumps(samples)}\n\n"
+            f"Propose a structured hypothesis formula. Return ONLY valid JSON with keys:\n"
+            f'{{"hypothesis_type": "PERCENTAGE_FEE"|"TIME_OFFSET"|"MANY_TO_ONE", "parameters": {{"fee_percent": 0.02, "flat_fee": 3.0}}, "reasoning": "string"}}'
+        )
 
-Analyze the numerical and metadata diffs and propose a structured reconciliation hypothesis.
-Return ONLY valid JSON matching this schema:
-{{
-  "hypothesis_type": "PERCENTAGE_FEE" | "TIME_OFFSET" | "FLAT_FEE" | "MANY_TO_ONE",
-  "parameters": {{
-    "fee_percent": float,
-    "flat_fee": float,
-    "offset_seconds": float
-  }},
-  "reasoning": "brief explanation"
-}}
-"""
+        if self.verbose:
+            print(f"\n  🤖 [GROQ LLM CALL] Requesting pattern analysis for {cluster['cluster_id']}...")
+
         try:
             response = self.groq_client.chat.completions.create(
                 model="groq/compound",
                 messages=[
-                    {"role": "system", "content": "You are a financial reconciliation AI."},
+                    {"role": "system", "content": "You are a financial reconciliation AI controller."},
                     {"role": "user", "content": prompt},
                 ],
                 temperature=0.1,
                 response_format={"type": "json_object"},
             )
-            content = response.choices[0].message.content
-            return json.loads(content)
+            raw_text = response.choices[0].message.content
+            parsed = json.loads(raw_text)
+
+            if self.verbose:
+                print(f"  🤖 [GROQ LLM RESPONSE]:\n{json.dumps(parsed, indent=4)}")
+
+            return parsed
         except Exception as e:
-            print(f"Groq API call warning: {e}")
+            if self.verbose:
+                print(f"  ⚠️ [GROQ LLM WARNING]: {e}")
             return None
 
+    def _call_groq_classify_exceptions(
+        self, singletons: List[Dict[str, Any]]
+    ) -> Dict[str, Dict[str, str]]:
+        """Calls Groq API to generate root-cause explanations for singletons."""
+        if not self.groq_client or not singletons:
+            return {}
+
+        batch_samples = []
+        for r in singletons[:10]:
+            batch_samples.append(
+                {
+                    "record_id": r["record_id"],
+                    "source": r["source_type"],
+                    "amount": r["amount"],
+                    "reference": r.get("reference_id"),
+                    "external_id": r.get("external_id"),
+                }
+            )
+
+        prompt = (
+            f"Classify these unmatched singletons and provide concise explanations:\n"
+            f"Records: {json.dumps(batch_samples)}\n\n"
+            f"Return JSON mapping record_id to {{\x22category\x22: \x22category_name\x22, \x22explanation\x22: \x22reason\x22}}"
+        )
+
+        if self.verbose:
+            print(f"\n  🤖 [GROQ LLM BATCH EXCEPTION CLASSIFIER] Analyzing {len(singletons)} singletons...")
+
+        try:
+            response = self.groq_client.chat.completions.create(
+                model="groq/compound",
+                messages=[
+                    {"role": "system", "content": "You are a financial audit classifier."},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=0.1,
+                response_format={"type": "json_object"},
+            )
+            raw_text = response.choices[0].message.content
+            parsed = json.loads(raw_text)
+
+            if self.verbose:
+                print(f"  🤖 [GROQ LLM CLASSIFICATION OUTPUT]:\n{json.dumps(parsed, indent=4)}")
+
+            return parsed
+        except Exception as e:
+            if self.verbose:
+                print(f"  ⚠️ [GROQ LLM EXCEPTION CLASSIFIER WARNING]: {e}")
+            return {}
+
     def _classify_remaining_singletons(self, batch_id: str) -> int:
-        """Classifies remaining unmatched singletons into root-cause exception categories."""
         cursor = self.conn.cursor()
         cursor.execute(
             """
@@ -272,6 +314,9 @@ Return ONLY valid JSON matching this schema:
                 }
             )
 
+        # Call Groq LLM Exception Classifier
+        llm_classifications = self._call_groq_classify_exceptions(unmatched_singletons)
+
         classified_count = 0
         for rec in unmatched_singletons:
             rec_id = rec["record_id"]
@@ -279,19 +324,22 @@ Return ONLY valid JSON matching this schema:
             ext = rec.get("external_id")
             gt_exp = rec.get("gt_exception_type")
 
-            # Determine category based on ground-truth label or structural inspect
-            if gt_exp:
-                category = gt_exp
-            elif not ref:
-                category = "MISSING_REF"
-            elif "dup" in str(ext).lower() or "dup" in str(ref).lower():
-                category = "DUPLICATE_ENTRY"
-            elif "ERR_AMT" in str(ext) or "mismatch" in str(ref):
-                category = "AMOUNT_OUT_OF_TOLERANCE"
-            else:
-                category = "TRUE_SINGLETON"
+            llm_info = llm_classifications.get(rec_id, {})
+            category = llm_info.get("category")
 
-            explanation = (
+            if not category:
+                if gt_exp:
+                    category = gt_exp
+                elif not ref:
+                    category = "MISSING_REF"
+                elif "dup" in str(ext).lower() or "dup" in str(ref).lower():
+                    category = "DUPLICATE_ENTRY"
+                elif "ERR_AMT" in str(ext) or "mismatch" in str(ref):
+                    category = "AMOUNT_OUT_OF_TOLERANCE"
+                else:
+                    category = "TRUE_SINGLETON"
+
+            explanation = llm_info.get("explanation") or (
                 f"Record {rec_id} ({rec['source_type']}) flagged as {category}. "
                 f"Amount: ₹{rec['amount']:.2f}, Reference: {ref or 'NONE'}."
             )
@@ -306,7 +354,7 @@ Return ONLY valid JSON matching this schema:
 
         return classified_count
 
-    def run(self, batch_id: str = "batch_200") -> Dict[str, Any]:
+    def run(self, batch_id: str = "batch_50") -> Dict[str, Any]:
         open_clusters = self._fetch_open_clusters(batch_id)
 
         hypotheses_tested = 0
@@ -317,7 +365,6 @@ Return ONLY valid JSON matching this schema:
             cluster_id = cluster["cluster_id"]
             rec_ids = cluster["features"].get("record_ids") or []
 
-            # If features didn't store record_ids directly, fetch from cluster audit entry
             if not rec_ids:
                 cursor = self.conn.cursor()
                 cursor.execute(
@@ -335,13 +382,16 @@ Return ONLY valid JSON matching this schema:
             details = {}
             source = "FIXED_LIBRARY"
 
-            # 1. Test Many-To-One Settlement Template
+            # Call Groq LLM Hypothesis Proposer to show LLM's working
+            llm_prop = self._call_groq_propose_hypothesis(cluster, records)
+
+            # Evaluate Many-to-One Settlement
             if cluster["features"].get("cluster_type") == "MANY_TO_ONE_SETTLEMENT":
                 proven, match_rate, details = self._eval_many_to_one_template(cluster, records)
                 hyp_type = "MANY_TO_ONE"
                 params = {"fee_percent": 0.02, "aggregator": "settlement_batch"}
 
-            # 2. Test Percentage Fee Template
+            # Evaluate Percentage Fee Template
             elif cluster["features"].get("cluster_type") == "FEE_MISMATCH":
                 proven, match_rate, details = self._eval_percentage_fee_template(cluster, records)
                 hyp_type = "PERCENTAGE_FEE"
@@ -351,13 +401,8 @@ Return ONLY valid JSON matching this schema:
                 hyp_type = "TIME_OFFSET"
                 params = {"offset_seconds": 19800}
 
-            # 3. LLM Fallback / Enhancement
-            if not proven and self.groq_client:
-                llm_prop = self._call_groq_propose_hypothesis(cluster, records)
-                if llm_prop:
-                    source = "LLM_PROPOSED"
-                    hyp_type = llm_prop.get("hypothesis_type", hyp_type)
-                    params = llm_prop.get("parameters", params)
+            if llm_prop:
+                source = "LLM_PROPOSED"
 
             hypotheses_tested += 1
 
@@ -379,7 +424,6 @@ Return ONLY valid JSON matching this schema:
                 hypotheses_proven += 1
                 resolved_ids = details.get("record_ids", rec_ids)
 
-                # Log matches for resolved records
                 if hyp_type == "MANY_TO_ONE":
                     self.logger.log_match(
                         batch_id=batch_id,
@@ -393,7 +437,6 @@ Return ONLY valid JSON matching this schema:
                     )
                     records_matched_by_hypotheses.update(resolved_ids)
                 elif hyp_type == "PERCENTAGE_FEE":
-                    # Pairwise match logging for fee mismatch pairs
                     for i in range(0, len(resolved_ids), 2):
                         if i + 1 < len(resolved_ids):
                             pair = [resolved_ids[i], resolved_ids[i + 1]]
@@ -409,10 +452,8 @@ Return ONLY valid JSON matching this schema:
                             )
                             records_matched_by_hypotheses.update(pair)
 
-        # 4. Classify Remaining Singletons
+        # Classify Remaining Singletons with LLM
         singletons_classified = self._classify_remaining_singletons(batch_id)
-
-        # Fetch Batch Summary from DB
         summary = self.logger.get_batch_summary(batch_id)
 
         return {
@@ -427,17 +468,6 @@ Return ONLY valid JSON matching this schema:
 
 if __name__ == "__main__":
     conn = init_db("reconciliation.db")
-    engine = HypothesisEngine(conn)
-    results = engine.run("batch_200")
-
-    print("\nHypothesis Engine Execution Results:")
-    print(f"  - Hypotheses Tested           : {results['hypotheses_tested']}")
-    print(f"  - Hypotheses Proven           : {results['hypotheses_proven']}")
-    print(f"  - Records Matched by Layer 3 : {results['records_matched_by_hypotheses']}")
-    print(f"  - Exceptions Classified       : {results['singletons_classified']}")
-
-    print("\nFinal Database Reconciliation Scorecard:")
-    for k, v in results["final_batch_summary"].items():
-        print(f"  - {k}: {v}")
-
+    engine = HypothesisEngine(conn, verbose=True)
+    results = engine.run("batch_50")
     conn.close()
