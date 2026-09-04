@@ -212,7 +212,7 @@ class HypothesisEngine:
         )
 
         if self.verbose:
-            print(f"\n  🤖 [GROQ LLM CALL] Requesting pattern analysis for {cluster['cluster_id']}...")
+            print(f"\n  [GROQ LLM CALL] Requesting pattern analysis for {cluster['cluster_id']}...")
 
         try:
             response = self.groq_client.chat.completions.create(
@@ -228,12 +228,12 @@ class HypothesisEngine:
             parsed = json.loads(raw_text)
 
             if self.verbose:
-                print(f"  🤖 [GROQ LLM RESPONSE]:\n{json.dumps(parsed, indent=4)}")
+                print(f"  [GROQ LLM RESPONSE]:\n{json.dumps(parsed, indent=4)}")
 
             return parsed
         except Exception as e:  # noqa: BLE001
             if self.verbose:
-                print(f"  ⚠️ [GROQ LLM WARNING]: {e}")
+                print(f"  [GROQ LLM WARNING]: {e}")
             return None
 
     def _call_groq_classify_exceptions(
@@ -262,7 +262,7 @@ class HypothesisEngine:
         )
 
         if self.verbose:
-            print(f"\n  🤖 [GROQ LLM BATCH EXCEPTION CLASSIFIER] Analyzing {len(singletons)} singletons...")
+            print(f"\n  [GROQ LLM BATCH EXCEPTION CLASSIFIER] Analyzing {len(singletons)} singletons...")
 
         try:
             response = self.groq_client.chat.completions.create(
@@ -278,12 +278,12 @@ class HypothesisEngine:
             parsed = json.loads(raw_text)
 
             if self.verbose:
-                print(f"  🤖 [GROQ LLM CLASSIFICATION OUTPUT]:\n{json.dumps(parsed, indent=4)}")
+                print(f"  [GROQ LLM CLASSIFICATION OUTPUT]:\n{json.dumps(parsed, indent=4)}")
 
             return parsed
         except Exception as e:  # noqa: BLE001
             if self.verbose:
-                print(f"  ⚠️ [GROQ LLM EXCEPTION CLASSIFIER WARNING]: {e}")
+                print(f"  [GROQ LLM EXCEPTION CLASSIFIER WARNING]: {e}")
             return {}
 
     def _classify_remaining_singletons(self, batch_id: str) -> int:

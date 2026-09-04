@@ -137,9 +137,11 @@ CREATE INDEX IF NOT EXISTS idx_hypotheses_cluster ON hypotheses(cluster_id);
 """
 
 
-def init_db(db_path: str = "reconciliation.db") -> sqlite3.Connection:
+def init_db(
+    db_path: str = "reconciliation.db", check_same_thread: bool = False
+) -> sqlite3.Connection:
     """Initializes the SQLite database schema and returns a connection with WAL mode enabled."""
-    conn = sqlite3.connect(db_path)
+    conn = sqlite3.connect(db_path, check_same_thread=check_same_thread)
     conn.execute("PRAGMA foreign_keys = ON;")
     conn.execute("PRAGMA journal_mode = WAL;")
     conn.executescript(SCHEMA_DDL)
@@ -382,6 +384,18 @@ class AuditLogger:
         cluster_id: str | None = None,
     ) -> str:
         """Logs an exception for an unresolvable record."""
+        valid_categories = {
+            "TIME_OFFSET",
+            "FEE_MISMATCH",
+            "AMOUNT_OUT_OF_TOLERANCE",
+            "MISSING_REF",
+            "DUPLICATE_ENTRY",
+            "TRUE_SINGLETON",
+        }
+        normalized_category = str(category).upper().strip()
+        if normalized_category not in valid_categories:
+            normalized_category = "TRUE_SINGLETON"
+
         exception_id = f"EXC_{uuid.uuid4().hex[:8]}"
         cursor = self.conn.cursor()
 
@@ -394,7 +408,7 @@ class AuditLogger:
                 (
                     batch_id,
                     json.dumps([record_id]),
-                    f"exception_{category.lower()}",
+                    f"exception_{normalized_category.lower()}",
                     json.dumps(details),
                 ),
             )
@@ -410,7 +424,7 @@ class AuditLogger:
                     batch_id,
                     record_id,
                     cluster_id,
-                    category,
+                    normalized_category,
                     audit_id,
                 ),
             )

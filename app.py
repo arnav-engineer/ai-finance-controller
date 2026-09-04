@@ -20,7 +20,6 @@ load_dotenv()
 # Set Streamlit Page Configuration
 st.set_page_config(
     page_title="AI Finance Controller | Razorpay Buildathon",
-    page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -65,15 +64,15 @@ st.markdown(
 )
 
 
-@st.cache_resource
 def get_db_connection(db_file="dashboard_recon.db"):
-    conn = init_db(db_file)
+    """Creates a thread-safe SQLite connection for Streamlit app sessions."""
+    conn = init_db(db_file, check_same_thread=False)
     return conn, db_file
 
 
 # --- SIDEBAR: PARAMETERS & CONTROL PANEL ---
 st.sidebar.image("https://img.icons8.com/color/96/000000/pos-terminal.png", width=64)
-st.sidebar.title("⚡ Control Panel")
+st.sidebar.title("Control Panel")
 st.sidebar.caption("AI Finance Controller (Track 04)")
 
 st.sidebar.subheader("1. Data Generation Parameters")
@@ -90,9 +89,9 @@ random_seed = st.sidebar.slider("Synthetic Seed", min_value=1, max_value=999, va
 st.sidebar.subheader("2. Groq LLM Settings")
 groq_api_key = os.getenv("GROQ_API_KEY", "")
 has_groq = bool(groq_api_key and not groq_api_key.startswith("gsk_your_"))
-st.sidebar.info(f"Groq API Status: {'🟢 ACTIVE (groq/compound)' if has_groq else '🟡 SIMULATED FALLBACK'}")
+st.sidebar.info(f"Groq API Status: {'[ACTIVE] (groq/compound)' if has_groq else '[SIMULATED] FALLBACK'}")
 
-run_button = st.sidebar.button("🚀 Generate & Run Reconciliation Pipeline", use_container_width=True)
+run_button = st.sidebar.button("Generate & Run Reconciliation Pipeline", use_container_width=True)
 
 # --- APP STATE INITIALIZATION ---
 if "pipeline_run" not in st.session_state:
@@ -159,7 +158,7 @@ conn, db_file = get_db_connection()
 batch_id = st.session_state.current_batch_id
 
 # --- MAIN DASHBOARD HEADER ---
-st.title("🛡️ AI Finance Controller — Interactive Multi-Layer Reconciliation")
+st.title("AI Finance Controller — Interactive Multi-Layer Reconciliation")
 st.caption(
     "Auditable Financial Multi-Source Reconciliation Loop with Zero-Delta Verification & Groq API Pattern Discovery"
 )
@@ -180,12 +179,12 @@ st.divider()
 # --- STEP-BY-STEP LAYER NAVIGATION TABS ---
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
     [
-        "📥 1. Raw Ingestion",
-        "🎯 2. Pass 1 Exact Match",
-        "🧩 3. Pass 2 Clustering",
-        "🤖 4. Pass 3 LLM Hypotheses",
-        "🙋 5. Human-in-the-Loop & Chat",
-        "🌿 6. Scorecard & Carbon",
+        "1. Raw Ingestion",
+        "2. Pass 1 Exact Match",
+        "3. Pass 2 Clustering",
+        "4. Pass 3 LLM Hypotheses",
+        "5. Human-in-the-Loop & Chat",
+        "6. Scorecard & Carbon",
     ]
 )
 
@@ -204,7 +203,7 @@ with tab1:
     rows = cursor.fetchall()
     df_raw = pd.DataFrame(
         rows,
-        columns=["Record ID", "Source", "External ID", "Reference ID", "Amount (₹)", "Timestamp", "Status"],
+        columns=["Record ID", "Source", "External ID", "Reference ID", "Amount (INR)", "Timestamp", "Status"],
     )
 
     c1, c2, c3 = st.columns(3)
@@ -228,7 +227,7 @@ with tab2:
     m2.metric("Exact 1:1:1 Triplets Matched", f"{p1['pass2_exact_triplet_matches']}")
     m3.metric("Remaining Unmatched", f"{p1['remaining_unmatched']}")
 
-    st.subheader("✅ Pass 1 Resolved Match Trail")
+    st.subheader("Pass 1 Resolved Match Trail")
     cursor = conn.cursor()
     cursor.execute(
         "SELECT match_id, rule_name, confidence, record_ids, details FROM matches WHERE batch_id = ? AND layer = 'EXACT_MATCHER'",
@@ -249,14 +248,14 @@ with tab2:
         )
     st.dataframe(pd.DataFrame(matches_data), use_container_width=True)
 
-    st.subheader("➡️ Unmatched Records Passed to Pass 2 (Clustering Engine)")
+    st.subheader("Unmatched Records Passed to Pass 2 (Clustering Engine)")
     cursor.execute(
         "SELECT record_id, source_type, amount, reference_id, external_id FROM raw_records WHERE batch_id = ? AND status = 'UNMATCHED'",
         (batch_id,),
     )
     unmatched_rows = cursor.fetchall()
     df_unmatched_p1 = pd.DataFrame(
-        unmatched_rows, columns=["Record ID", "Source", "Amount (₹)", "Reference ID", "External ID"]
+        unmatched_rows, columns=["Record ID", "Source", "Amount (INR)", "Reference ID", "External ID"]
     )
     st.dataframe(df_unmatched_p1, use_container_width=True)
 
@@ -277,7 +276,7 @@ with tab3:
     for row in cluster_rows:
         cid, ctype, rcount, feats = row
         features_dict = json.loads(feats) if isinstance(feats, str) else feats
-        with st.expander(f"📦 Cluster {cid} ({ctype} — {rcount} records)", expanded=True):
+        with st.expander(f"Cluster {cid} ({ctype} — {rcount} records)", expanded=True):
             st.write(f"**Member Record IDs**: `{features_dict.get('record_ids', [])}`")
             st.write(f"**Cluster Features Summary**: {features_dict}")
 
@@ -286,7 +285,7 @@ with tab3:
         fig = px.strip(
             df_unmatched_p1,
             x="Source",
-            y="Amount (₹)",
+            y="Amount (INR)",
             color="Source",
             hover_data=["Record ID", "Reference ID"],
             title="Feature Space Distribution of Unmatched Transactions",
@@ -314,7 +313,7 @@ with tab4:
     for r in hyp_rows:
         hid, htype, params_json, clid, mrate, proven, source = r
         params = json.loads(params_json) if isinstance(params_json, str) else params_json
-        status_str = "✅ PROVEN & VERIFIED" if proven else "❌ REJECTED"
+        status_str = "[PROVEN & VERIFIED]" if proven else "[REJECTED]"
         st.success(f"**{hid}** [{htype}] — Target: `{clid}` | Match Resolution: **{mrate*100:.1f}%** | Status: **{status_str}**")
         st.json(params)
 
@@ -328,35 +327,35 @@ with tab5:
     st.subheader("1. Interactive Live Rule Tester")
     rule_col1, rule_col2 = st.columns(2)
     test_fee_pct = rule_col1.slider("Test Fee %", 0.0, 5.0, 2.0, step=0.1) / 100.0
-    test_flat_fee = rule_col2.slider("Test Flat Fee (₹)", 0.0, 10.0, 3.0, step=0.5)
+    test_flat_fee = rule_col2.slider("Test Flat Fee (INR)", 0.0, 10.0, 3.0, step=0.5)
 
-    if st.button("🧪 Test Custom Rule Against Active Clusters"):
+    if st.button("Test Custom Rule Against Active Clusters"):
         cli = HumanInTheLoopCLI(db_file=db_file)
         cursor.execute("SELECT cluster_id FROM clusters WHERE batch_id = ? LIMIT 1", (batch_id,))
         c_row = cursor.fetchone()
         if c_row:
             cluster_id = c_row[0]
-            st.info(f"Testing Rule (Fee={test_fee_pct*100:.1f}%, Flat=₹{test_flat_fee}) on {cluster_id}...")
+            st.info(f"Testing Rule (Fee={test_fee_pct*100:.1f}%, Flat=INR {test_flat_fee}) on {cluster_id}...")
             cli.test_custom_human_rule(cluster_id, fee_percent=test_fee_pct, flat_fee=test_flat_fee)
             st.success("Rule test completed! Check stdout for resolution log.")
 
     st.divider()
 
-    st.subheader("2. 🤖 Proactive Agent Interrogation Chat")
+    st.subheader("2. Proactive Agent Interrogation Chat")
     st.caption("Ask questions about any record ID or match decision grounded 100% in SQLite audit_log facts.")
 
     cursor.execute("SELECT record_id FROM raw_records WHERE batch_id = ?", (batch_id,))
     all_rec_ids = [r[0] for r in cursor.fetchall()]
     selected_rec = st.selectbox("Select Record ID to Interrogate:", all_rec_ids, index=0)
 
-    if st.button("💬 Interrogate Record"):
+    if st.button("Interrogate Record"):
         cli = HumanInTheLoopCLI(db_file=db_file)
         history = cli.logger.get_record_history(selected_rec)
         st.markdown(f"### Audit History for `{selected_rec}`")
         if history:
             st.dataframe(pd.DataFrame(history), use_container_width=True)
             if cli.groq_client:
-                with st.spinner("Groq API (`groq/compound`) reasoning from audit facts..."):
+                with st.spinner("Groq API (groq/compound) reasoning from audit facts..."):
                     prompt = f"Why didn't record {selected_rec} match in Pass 1? Audit evidence: {json.dumps(history)}"
                     try:
                         res = cli.groq_client.chat.completions.create(
@@ -367,7 +366,7 @@ with tab5:
                             ],
                             temperature=0.1,
                         )
-                        st.info(f"🤖 **Groq LLM Reasoning**:\n\n{res.choices[0].message.content}")
+                        st.info(f"**Groq LLM Reasoning**:\n\n{res.choices[0].message.content}")
                     except Exception as e:  # noqa: BLE001
                         st.warning(f"Groq API Response: {e}")
 
@@ -386,7 +385,7 @@ with tab6:
     st.subheader("Unmatched Exception Transactions (Line-by-Line Detail)")
     st.dataframe(pd.DataFrame(s["unmatched_details"]), use_container_width=True)
 
-    st.subheader("🌿 CodeCarbon Energy & Sustainability Audit")
+    st.subheader("CodeCarbon Energy & Sustainability Audit")
     cb1, cb2, cb3 = st.columns(3)
     cb1.metric("Total CO2 Emissions", f"{c['emissions_mg_co2eq']:.4f} mg CO2eq")
     cb2.metric("Footprint Per Transaction", f"{c['emissions_per_tx_mg']:.4f} mg CO2eq / tx")

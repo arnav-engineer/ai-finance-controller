@@ -58,7 +58,7 @@ class HumanInTheLoopCLI:
             hyp_id, hyp_type, params_json, cluster_id, match_rate, proven, source, _audit_id = r
             hyp_ids.append(hyp_id)
             params = json.loads(params_json) if isinstance(params_json, str) else params_json
-            status = "✅ PROVEN & APPROVED" if proven else "❓ PENDING HUMAN REVIEW"
+            status = "[PROVEN & APPROVED]" if proven else "[PENDING HUMAN REVIEW]"
 
             print(f"\n  [{idx}] Hypothesis ID: {hyp_id}")
             print(f"      Target Cluster  : {cluster_id}")
@@ -90,7 +90,7 @@ class HumanInTheLoopCLI:
 
         history = self.logger.get_record_history(record_id)
         if not history:
-            print(f"  ❌ No audit history found for record {record_id}.")
+            print(f"  [X] No audit history found for record {record_id}.")
             return
 
         cursor = self.conn.cursor()
@@ -126,7 +126,7 @@ class HumanInTheLoopCLI:
                 f"Provide a concise, grounded explanation citing exact amounts, keys, and test outcomes."
             )
             try:
-                print("\n  🤖 [GROQ LLM INTERROGATION CHAT]:")
+                print("\n  [GROQ LLM INTERROGATION CHAT]:")
                 res = self.groq_client.chat.completions.create(
                     model="groq/compound",
                     messages=[
@@ -137,7 +137,7 @@ class HumanInTheLoopCLI:
                 )
                 print(f"  {res.choices[0].message.content.strip()}\n")
             except Exception as e:  # noqa: BLE001
-                print(f"  ⚠️ LLM chat error: {e}")
+                print(f"  [WARNING] LLM chat error: {e}")
         else:
             print("\n  [EVIDENCE SUMMARY]:")
             for evt in history:
@@ -151,7 +151,7 @@ class HumanInTheLoopCLI:
         cursor.execute("SELECT features FROM clusters WHERE cluster_id = ?", (cluster_id,))
         r = cursor.fetchone()
         if not r:
-            print(f"  ❌ Cluster {cluster_id} not found.")
+            print(f"  [X] Cluster {cluster_id} not found.")
             return
 
         features = json.loads(r[0]) if isinstance(r[0], str) else r[0]
@@ -178,11 +178,11 @@ class HumanInTheLoopCLI:
                         resolved += 2
 
         match_rate = resolved / len(recs) if recs else 0.0
-        print(f"  ✓ Live Test Outcome: {resolved}/{len(recs)} records resolved ({match_rate * 100:.1f}% resolution rate).")
+        print(f"  [OK] Live Test Outcome: {resolved}/{len(recs)} records resolved ({match_rate * 100:.1f}% resolution rate).")
         if match_rate >= 0.80:
-            print("  ✅ Rule PROVEN! Ready for Human Approval to commit to database.")
+            print("  [PROVEN] Rule PROVEN! Ready for Human Approval to commit to database.")
         else:
-            print("  ❌ Rule failed threshold (requires >= 80.0%).")
+            print("  [REJECTED] Rule failed threshold (requires >= 80.0%).")
 
     def interactive_menu(self, batch_id: str = "batch_50"):
         """Main Interactive Menu for Human-in-the-Loop Operations."""
