@@ -119,15 +119,34 @@ In our system architecture, **the LLM is never allowed to write directly to the 
 | **Systemic Learning** | Knowledge lost when ops staff leave | Retrained from scratch | **Growing Proven Rule Library** |
 | **Ops Time Saved** | $0\%$ baseline | $60\%$ (requires manual re-checking) | **> 90% Human Time Reduction** |
 
----
+## 4. Evaluation Scorecard Summary
 
-## 4. Evaluation Scorecard Summary (200-Record Test Batch)
+### A. 50-Record Batch Run (`main.py`) — Track 04 Pitch Benchmark
+```
+=================================================================
+        RECONCILIATION EVALUATION SCORECARD (batch_50)
+=================================================================
+  Total Ingested Batch Records  : 50
+  Successfully Matched Records  : 45
+  Flagged Exception Records     : 5
+  Overall Batch Match Rate      : 90.00%
+-----------------------------------------------------------------
+  ACCURACY & AUDIT METRICS:
+  - Match Precision (Target 100%): 100.00% (False Positives: 0)
+  - Match Recall (Ground Truth)  : 100.00% (45/45 GT records)
+  - Exception Categorization Acc : 100.00%
+-----------------------------------------------------------------
+  HONEST EXCEPTION LIST BREAKDOWN:
+    * DUPLICATE_ENTRY          : 2 records
+    * TRUE_SINGLETON           : 3 records
+=================================================================
+```
 
-- **Total Ingested Records**: 200
-- **Pass 1 (`ExactMatcher`)**: **147 records resolved (73.5% match rate)** — 100.00% verified precision.
-- **Pass 2 (`ClusteringEngine`)**: 53 unmatched records grouped into **2 systemic clusters (21 records)** + 32 singletons.
-- **Pass 3 (`HypothesisEngine`)**: Tested & proved **2/2 systemic hypotheses**, resolving 21 additional records.
-- **Final Pipeline Reconciliation Rate**: **168/200 records resolved (84.0% Match Rate)** with **100.00% Verified Match Precision (0 False Matches)**.
-- **Honest Exception List**: 32 records (16.0%) classified into transparent root-cause categories (amount out of tolerance, missing narration ref, duplicate payments, true singletons).
+### B. Stage-by-Stage Breakdown
+1. **Pass 1 (`ExactMatcher`)**: Resolves **37/50 records (74.0%)** with $100.00\%$ precision.
+2. **Pass 2 (`ClusteringEngine`)**: Groups 13 unmatched records into 2 systemic clusters (8 records) + 5 singletons.
+3. **Pass 3 (`HypothesisEngine`)**: Proves 2/2 hypotheses (`MANY_TO_ONE` and `PERCENTAGE_FEE`), resolving 8 additional records.
+4. **Honest Exception List**: 5 records transparently categorized (2 duplicate retries + 3 true singletons).
+
 
 
