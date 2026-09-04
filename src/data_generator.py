@@ -57,7 +57,7 @@ class SyntheticDataGenerator:
             count_timeoff = 6     # 12 records
             count_fee = 6         # 12 records
             count_m1_gw = 8       # 9 records
-            count_singletons = 18 # 18 records -> Total = 200
+            count_singletons = 32 # 32 records -> Total = 200
 
         # --- 1. Clean 1:1 Gateway <-> Bank Matches ---
         for i in range(count_1to1):
