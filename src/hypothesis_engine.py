@@ -202,6 +202,48 @@ class HypothesisEngine:
                 }
             )
 
+
+
+    def _safe_groq_completion(
+        self, messages: list[dict[str, str]], response_format: dict[str, str] | None = None
+    ) -> Any:
+        """Invokes Groq API with fallback models (groq/compound -> llama-3.3-70b-versatile -> llama-3.1-8b-instant) on 429 TPD rate limits."""
+        if not self.groq_client:
+            return None
+
+        candidate_models = [
+            "groq/compound",
+            "llama-3.3-70b-versatile",
+            "llama-3.1-8b-instant",
+        ]
+        for model in candidate_models:
+            try:
+                kwargs: dict[str, Any] = {
+                    "model": model,
+                    "messages": messages,
+                    "temperature": 0.1,
+                }
+                if response_format:
+                    kwargs["response_format"] = response_format
+                return self.groq_client.chat.completions.create(**kwargs)
+            except Exception as e:  # noqa: BLE001
+                err_msg = str(e)
+                if "429" in err_msg or "rate_limit" in err_msg.lower() or "limit" in err_msg.lower():
+                    if self.verbose:
+                        print(f"  [GROQ 429 RATE LIMIT] Model {model} rate limited. Retrying next candidate model...")
+                    continue
+                if self.verbose:
+                    print(f"  [GROQ API ERROR] {model}: {e}")
+                break
+        return None
+
+    def _call_groq_propose_hypothesis(
+        self, cluster: dict[str, Any], samples: list[dict[str, Any]]
+    ) -> dict[str, Any] | None:
+        """Calls Groq API with model fallback to propose structured pattern hypotheses."""
+        if not self.groq_client:
+            return None
+
         prompt = (
             f"You are an AI financial reconciliation agent. Analyze this cluster of unmatched records:\n"
             f"Cluster ID: {cluster['cluster_id']}\n"
@@ -214,26 +256,26 @@ class HypothesisEngine:
         if self.verbose:
             print(f"\n  [GROQ LLM CALL] Requesting pattern analysis for {cluster['cluster_id']}...")
 
+        response = self._safe_groq_completion(
+            messages=[
+                {"role": "system", "content": "You are a financial reconciliation AI controller."},
+                {"role": "user", "content": prompt},
+            ],
+            response_format={"type": "json_object"},
+        )
+
+        if not response:
+            return None
+
         try:
-            response = self.groq_client.chat.completions.create(
-                model="groq/compound",
-                messages=[
-                    {"role": "system", "content": "You are a financial reconciliation AI controller."},
-                    {"role": "user", "content": prompt},
-                ],
-                temperature=0.1,
-                response_format={"type": "json_object"},
-            )
             raw_text = response.choices[0].message.content
             parsed = json.loads(raw_text)
-
             if self.verbose:
                 print(f"  [GROQ LLM RESPONSE]:\n{json.dumps(parsed, indent=4)}")
-
             return parsed
         except Exception as e:  # noqa: BLE001
             if self.verbose:
-                print(f"  [GROQ LLM WARNING]: {e}")
+                print(f"  [GROQ LLM PARSE WARNING]: {e}")
             return None
 
     def _call_groq_classify_exceptions(
@@ -264,26 +306,26 @@ class HypothesisEngine:
         if self.verbose:
             print(f"\n  [GROQ LLM BATCH EXCEPTION CLASSIFIER] Analyzing {len(singletons)} singletons...")
 
+        response = self._safe_groq_completion(
+            messages=[
+                {"role": "system", "content": "You are a financial audit classifier."},
+                {"role": "user", "content": prompt},
+            ],
+            response_format={"type": "json_object"},
+        )
+
+        if not response:
+            return {}
+
         try:
-            response = self.groq_client.chat.completions.create(
-                model="groq/compound",
-                messages=[
-                    {"role": "system", "content": "You are a financial audit classifier."},
-                    {"role": "user", "content": prompt},
-                ],
-                temperature=0.1,
-                response_format={"type": "json_object"},
-            )
             raw_text = response.choices[0].message.content
             parsed = json.loads(raw_text)
-
             if self.verbose:
                 print(f"  [GROQ LLM CLASSIFICATION OUTPUT]:\n{json.dumps(parsed, indent=4)}")
-
             return parsed
         except Exception as e:  # noqa: BLE001
             if self.verbose:
-                print(f"  [GROQ LLM EXCEPTION CLASSIFIER WARNING]: {e}")
+                print(f"  [GROQ LLM EXCEPTION CLASSIFIER PARSE WARNING]: {e}")
             return {}
 
     def _classify_remaining_singletons(self, batch_id: str) -> int:

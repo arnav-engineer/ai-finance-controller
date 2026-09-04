@@ -361,20 +361,31 @@ elif st.session_state.step == 5:
         if history:
             st.dataframe(pd.DataFrame(history))
             if cli.groq_client:
-                with st.spinner("Groq API (groq/compound) reasoning from audit facts..."):
+                with st.spinner("Groq API reasoning from audit facts..."):
                     prompt = f"Why didn't record {selected_rec} match in Pass 1? Audit evidence: {json.dumps(history)}"
-                    try:
-                        res = cli.groq_client.chat.completions.create(
-                            model="groq/compound",
-                            messages=[
-                                {"role": "system", "content": "You are a zero-hallucination financial audit assistant."},
-                                {"role": "user", "content": prompt},
-                            ],
-                            temperature=0.1,
-                        )
+                    candidate_models = ["groq/compound", "llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+                    res = None
+                    last_err = None
+                    for model in candidate_models:
+                        try:
+                            res = cli.groq_client.chat.completions.create(
+                                model=model,
+                                messages=[
+                                    {"role": "system", "content": "You are a zero-hallucination financial audit assistant."},
+                                    {"role": "user", "content": prompt},
+                                ],
+                                temperature=0.1,
+                            )
+                            break
+                        except Exception as e:  # noqa: BLE001
+                            last_err = e
+                            if "429" in str(e) or "rate_limit" in str(e).lower():
+                                continue
+                            break
+                    if res:
                         st.info(f"**Groq LLM Reasoning**:\n\n{res.choices[0].message.content}")
-                    except Exception as e:  # noqa: BLE001
-                        st.warning(f"Groq API Response: {e}")
+                    else:
+                        st.warning(f"Groq API (Rate limit / Offline fallback): {last_err}")
 
     st.divider()
     if st.button("Proceed to Step 6: Final Scorecard & CodeCarbon Audit ->"):
