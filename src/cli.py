@@ -38,8 +38,8 @@ class HumanInTheLoopCLI:
             except Exception as e:
                 print(f"Warning: Groq client init failed: {e}")
 
-    def show_pending_hypotheses(self, batch_id: str = "batch_50"):
-        """Displays hypotheses for Human-in-the-Loop review and approval."""
+    def show_pending_hypotheses(self, batch_id: str = "batch_50") -> List[str]:
+        """Displays hypotheses for Human-in-the-Loop review and returns list of hypothesis IDs."""
         cursor = self.conn.cursor()
         cursor.execute(
             """
@@ -52,67 +52,42 @@ class HumanInTheLoopCLI:
         rows = cursor.fetchall()
         if not rows:
             print("\n  [HITL] No hypotheses found for batch.")
-            return
+            return []
 
         print("\n" + "=" * 70)
         print(f"        HUMAN-IN-THE-LOOP: SYSTEMIC HYPOTHESIS APPROVAL ({batch_id})")
         print("=" * 70)
-        for r in rows:
+        hyp_ids = []
+        for idx, r in enumerate(rows, start=1):
             hyp_id, hyp_type, params_json, cluster_id, match_rate, proven, source, audit_id = r
+            hyp_ids.append(hyp_id)
             params = json.loads(params_json) if isinstance(params_json, str) else params_json
             status = "✅ PROVEN & APPROVED" if proven else "❓ PENDING HUMAN REVIEW"
 
-            print(f"\n  • Hypothesis ID   : {hyp_id}")
-            print(f"    Target Cluster  : {cluster_id}")
-            print(f"    Hypothesis Type : {hyp_type}")
-            print(f"    Parameters      : {json.dumps(params)}")
-            print(f"    Match Resolution: {match_rate * 100:.1f}% cluster records resolved")
-            print(f"    Source          : {source}")
-            print(f"    Status          : {status}")
+            print(f"\n  [{idx}] Hypothesis ID: {hyp_id}")
+            print(f"      Target Cluster  : {cluster_id}")
+            print(f"      Hypothesis Type : {hyp_type}")
+            print(f"      Parameters      : {json.dumps(params)}")
+            print(f"      Match Resolution: {match_rate * 100:.1f}% cluster records resolved")
+            print(f"      Source          : {source}")
+            print(f"      Status          : {status}")
         print("=" * 70 + "\n")
+        return hyp_ids
 
-    def approve_hypothesis(self, hypothesis_id: str, batch_id: str = "batch_50"):
-        """Approves a hypothesis, logging a HUMAN_APPROVED event into audit_log."""
-        cursor = self.conn.cursor()
-        cursor.execute(
-            "SELECT cluster_id, hypothesis_type, parameters FROM hypotheses WHERE hypothesis_id = ?",
-            (hypothesis_id,),
-        )
-        r = cursor.fetchone()
-        if not r:
-            print(f"  ❌ Hypothesis {hypothesis_id} not found.")
-            return
+    def _normalize_record_id(self, raw_input: str) -> str:
+        """Normalizes user input strings into canonical REC_XXXX format."""
+        s = raw_input.strip().upper().replace(" ", "_")
+        if s.isdigit():
+            return f"REC_{int(s):04d}"
+        if s.startswith("REC") and not s.startswith("REC_"):
+            num_part = s[3:]
+            if num_part.isdigit():
+                return f"REC_{int(num_part):04d}"
+        return s
 
-        cluster_id, hyp_type, params = r
-        with self.conn:
-            # Insert audit event for Human Approval
-            cursor.execute(
-                """
-                INSERT INTO audit_log (batch_id, event_type, actor, record_ids, confidence, rule_name, details)
-                VALUES (?, 'HUMAN_APPROVED', 'HUMAN_OPERATOR', ?, 1.0, ?, ?)
-                """,
-                (
-                    batch_id,
-                    json.dumps([hypothesis_id]),
-                    f"human_approval_{hyp_type.lower()}",
-                    json.dumps({"hypothesis_id": hypothesis_id, "cluster_id": cluster_id, "parameters": params}),
-                ),
-            )
-            cursor.execute(
-                "UPDATE hypotheses SET proven = 1 WHERE hypothesis_id = ?",
-                (hypothesis_id,),
-            )
-            if cluster_id:
-                cursor.execute(
-                    "UPDATE clusters SET status = 'RESOLVED' WHERE cluster_id = ?",
-                    (cluster_id,),
-                )
-
-        print(f"\n  ✅ [HUMAN APPROVAL LOGGED] Hypothesis '{hypothesis_id}' approved by Human Operator.")
-        print(f"     Event written to audit_log master ledger with actor 'HUMAN_OPERATOR'.")
-
-    def interrogate_record(self, record_id: str):
+    def interrogate_record(self, raw_record_id: str):
         """Proactive Interrogation Chat: Explains why a record failed to match using stored audit facts."""
+        record_id = self._normalize_record_id(raw_record_id)
         print(f"\n" + "=" * 70)
         print(f"        PROACTIVE INTERROGATION CHAT: Record {record_id}")
         print("=" * 70)
@@ -228,10 +203,15 @@ class HumanInTheLoopCLI:
 
             choice = input("Enter choice (1-5): ").strip()
             if choice == "1":
-                self.show_pending_hypotheses(batch_id)
-                hyp_id = input("Enter Hypothesis ID to approve (or press Enter to skip): ").strip()
-                if hyp_id:
-                    self.approve_hypothesis(hyp_id, batch_id)
+                hyp_ids = self.show_pending_hypotheses(batch_id)
+                user_inp = input("Enter Hypothesis ID or index number (1, 2) to approve (or press Enter to skip): ").strip()
+                if user_inp:
+                    target_id = user_inp
+                    if user_inp.isdigit():
+                        idx = int(user_inp) - 1
+                        if 0 <= idx < len(hyp_ids):
+                            target_id = hyp_ids[idx]
+                    self.approve_hypothesis(target_id, batch_id)
             elif choice == "2":
                 rec_id = input("Enter Record ID to interrogate (e.g. REC_0045): ").strip()
                 if rec_id:
