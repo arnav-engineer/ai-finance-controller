@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS audit_log (
     actor TEXT NOT NULL CHECK (
         actor IN (
             'SYSTEM_INGESTION',
+            'EXACT_MATCHER',
             'LAYER1_ENGINE',
             'CLUSTERING_ENGINE',
             'LAYER2_LLM',
@@ -64,7 +65,7 @@ CREATE TABLE IF NOT EXISTS audit_log (
 CREATE TABLE IF NOT EXISTS matches (
     match_id TEXT PRIMARY KEY,
     batch_id TEXT NOT NULL,
-    layer TEXT NOT NULL CHECK (layer IN ('LAYER1', 'LAYER2', 'LAYER3')),
+    layer TEXT NOT NULL CHECK (layer IN ('EXACT_MATCHER', 'LAYER1', 'LAYER2', 'LAYER3')),
     rule_name TEXT NOT NULL,
     confidence REAL NOT NULL,
     record_ids JSON NOT NULL,
