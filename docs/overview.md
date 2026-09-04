@@ -89,8 +89,11 @@ In our system architecture, **the LLM is never allowed to write directly to the 
 - **Empirical Performance**: Resolves **147 out of 200 records (73.5% match rate)** in under 0.1 seconds with **100.00% precision (0 false matches)**.
 
 ### 2.4 Shared Clustering Engine (Categorical + DBSCAN)
-- **Role**: Groups remaining unmatched records (53 items) by categorical features (source pair, payment method) and numerical features (time deltas, amount variances).
-- **DBSCAN Advantage**: Density-based clustering automatically maps unclusterable noise points ($label = -1$) to **True Singletons**, isolating unresolvable records without extra LLM overhead.
+- **File**: [src/clustering.py](file:///home/arnav-gupta/Projects/ai-finance-controller/src/clustering.py)
+- **Role**: Takes the remaining 53 unmatched records and groups them into systemic clusters based on structural & numerical features:
+  - **Categorical Settlement Grouping**: Groups 8 Gateway payments linked to 1 Bank payout (`CLUST_SETTLEMENT_01`: 9 records).
+  - **Feature-Based Fee Grouping**: Groups 18 records exhibiting systematic $2\% + \text{₹3}$ gateway fee variance (`CLUST_FEE_02`: 18 records).
+- **DBSCAN & Noise Point Isolation**: Automatically isolates 26 unclustered outlier singletons ($label = -1$) as true exceptions requiring targeted classification.
 
 ### 2.5 Hypothesis Engine & Pattern Discovery
 - **Role**: Tests a fixed library of systemic hypothesis templates against clusters:
@@ -120,7 +123,11 @@ In our system architecture, **the LLM is never allowed to write directly to the 
 ## 4. Evaluation Scorecard Summary (200-Record Test Batch)
 
 - **Total Ingested Records**: 200
-- **Deterministic Match Rate (Pass 1)**: **73.5%** (147 records resolved)
-- **Verified Match Precision**: **100.00%** (0 false matches)
-- **Remaining Exception Queue**: 53 records (grouped into 3 systemic clusters + isolated singletons)
+- **Deterministic Match Rate (ExactMatcher)**: **73.5%** (147 records resolved, 100.00% precision)
+- **Clustering Breakdown (ClusteringEngine)**:
+  - 53 unmatched records processed into **2 systemic clusters (27 records)**:
+    - `CLUST_SETTLEMENT_01` (Many-to-One Settlement): 9 records
+    - `CLUST_FEE_02` (Percentage/Flat Fee Variance): 18 records
+  - **26 Unclustered Singletons** isolated for exception classification.
 - **Target Overall Pipeline Match Rate**: **> 92.5%** after Layer 3 Hypothesis resolution.
+

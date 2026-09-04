@@ -289,7 +289,7 @@ class AuditLogger:
 
             cursor.execute(
                 """
-                INSERT INTO clusters (cluster_id, batch_id, clustering_method, record_count, features, status)
+                INSERT OR REPLACE INTO clusters (cluster_id, batch_id, clustering_method, record_count, features, status)
                 VALUES (?, ?, ?, ?, ?, 'OPEN')
                 """,
                 (
