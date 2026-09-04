@@ -1,0 +1,4431 @@
+{
+  "records": [
+    {
+      "record_id": "REC_0001",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_3615f9e5ff",
+      "reference_id": "order_hp_0001",
+      "amount": 30746.57,
+      "currency": "INR",
+      "fee": 614.93,
+      "tax": 110.69,
+      "timestamp": "2026-09-01T10:03:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_3615f9e5ff",
+        "order_id": "order_hp_0001",
+        "method": "card",
+        "utr": "UTR9697354961",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_001",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0002",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR9697354961",
+      "reference_id": "order_hp_0001",
+      "amount": 30746.57,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:03:19+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR9697354961",
+        "description": "CMS/RAZORPAY/order_hp_0001/UTR9697354961",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_001",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0003",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_fb63cf9d9e",
+      "reference_id": "order_hp_0002",
+      "amount": 6826.89,
+      "currency": "INR",
+      "fee": 136.54,
+      "tax": 24.58,
+      "timestamp": "2026-09-01T10:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_fb63cf9d9e",
+        "order_id": "order_hp_0002",
+        "method": "upi",
+        "utr": "UTR3342331444",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_002",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0004",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR3342331444",
+      "reference_id": "order_hp_0002",
+      "amount": 6826.89,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:20:07+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR3342331444",
+        "description": "CMS/RAZORPAY/order_hp_0002/UTR3342331444",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_002",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0005",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_b79cea63c2",
+      "reference_id": "order_hp_0003",
+      "amount": 1575.8,
+      "currency": "INR",
+      "fee": 31.52,
+      "tax": 5.67,
+      "timestamp": "2026-09-01T10:35:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_b79cea63c2",
+        "order_id": "order_hp_0003",
+        "method": "netbanking",
+        "utr": "UTR1939042955",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_003",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0006",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR1939042955",
+      "reference_id": "order_hp_0003",
+      "amount": 1575.8,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:35:06+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR1939042955",
+        "description": "CMS/RAZORPAY/order_hp_0003/UTR1939042955",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_003",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0007",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_1feedc1a71",
+      "reference_id": "order_hp_0004",
+      "amount": 27005.58,
+      "currency": "INR",
+      "fee": 540.11,
+      "tax": 97.22,
+      "timestamp": "2026-09-01T10:49:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_1feedc1a71",
+        "order_id": "order_hp_0004",
+        "method": "netbanking",
+        "utr": "UTR2801823908",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_004",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0008",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2801823908",
+      "reference_id": "order_hp_0004",
+      "amount": 27005.58,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:49:22+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2801823908",
+        "description": "CMS/RAZORPAY/order_hp_0004/UTR2801823908",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_004",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0009",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_82341364d1",
+      "reference_id": "order_hp_0005",
+      "amount": 38881.25,
+      "currency": "INR",
+      "fee": 777.62,
+      "tax": 139.97,
+      "timestamp": "2026-09-01T11:04:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_82341364d1",
+        "order_id": "order_hp_0005",
+        "method": "upi",
+        "utr": "UTR4460967357",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_005",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0010",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR4460967357",
+      "reference_id": "order_hp_0005",
+      "amount": 38881.25,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T11:04:22+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR4460967357",
+        "description": "CMS/RAZORPAY/order_hp_0005/UTR4460967357",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_005",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0011",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_701225787e",
+      "reference_id": "order_hp_0006",
+      "amount": 7589.69,
+      "currency": "INR",
+      "fee": 151.79,
+      "tax": 27.32,
+      "timestamp": "2026-09-01T11:16:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_701225787e",
+        "order_id": "order_hp_0006",
+        "method": "upi",
+        "utr": "UTR2445662585",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_006",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0012",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2445662585",
+      "reference_id": "order_hp_0006",
+      "amount": 7589.69,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T11:16:11+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2445662585",
+        "description": "CMS/RAZORPAY/order_hp_0006/UTR2445662585",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_006",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0013",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_103e40ab0d",
+      "reference_id": "order_hp_0007",
+      "amount": 17327.16,
+      "currency": "INR",
+      "fee": 346.54,
+      "tax": 62.38,
+      "timestamp": "2026-09-01T11:34:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_103e40ab0d",
+        "order_id": "order_hp_0007",
+        "method": "netbanking",
+        "utr": "UTR9776552803",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_007",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0014",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR9776552803",
+      "reference_id": "order_hp_0007",
+      "amount": 17327.16,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T11:34:12+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR9776552803",
+        "description": "CMS/RAZORPAY/order_hp_0007/UTR9776552803",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_007",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0015",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_c84b2f755b",
+      "reference_id": "order_hp_0008",
+      "amount": 46713.59,
+      "currency": "INR",
+      "fee": 934.27,
+      "tax": 168.17,
+      "timestamp": "2026-09-01T11:50:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_c84b2f755b",
+        "order_id": "order_hp_0008",
+        "method": "upi",
+        "utr": "UTR2625792787",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_008",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0016",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2625792787",
+      "reference_id": "order_hp_0008",
+      "amount": 46713.59,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T11:50:58+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2625792787",
+        "description": "CMS/RAZORPAY/order_hp_0008/UTR2625792787",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_008",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0017",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_f4e29f5e16",
+      "reference_id": "order_hp_0009",
+      "amount": 30230.41,
+      "currency": "INR",
+      "fee": 604.61,
+      "tax": 108.83,
+      "timestamp": "2026-09-01T12:02:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_f4e29f5e16",
+        "order_id": "order_hp_0009",
+        "method": "upi",
+        "utr": "UTR1298737106",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_009",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0018",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR1298737106",
+      "reference_id": "order_hp_0009",
+      "amount": 30230.41,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T12:02:10+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR1298737106",
+        "description": "CMS/RAZORPAY/order_hp_0009/UTR1298737106",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_009",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0019",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_d7c99230db",
+      "reference_id": "order_hp_0010",
+      "amount": 41076.95,
+      "currency": "INR",
+      "fee": 821.54,
+      "tax": 147.88,
+      "timestamp": "2026-09-01T12:19:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_d7c99230db",
+        "order_id": "order_hp_0010",
+        "method": "upi",
+        "utr": "UTR4721519026",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_010",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0020",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR4721519026",
+      "reference_id": "order_hp_0010",
+      "amount": 41076.95,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T12:19:34+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR4721519026",
+        "description": "CMS/RAZORPAY/order_hp_0010/UTR4721519026",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_010",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0021",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_900ae3bf14",
+      "reference_id": "order_hp_0011",
+      "amount": 30567.5,
+      "currency": "INR",
+      "fee": 611.35,
+      "tax": 110.04,
+      "timestamp": "2026-09-01T12:33:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_900ae3bf14",
+        "order_id": "order_hp_0011",
+        "method": "upi",
+        "utr": "UTR2566942273",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_011",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0022",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2566942273",
+      "reference_id": "order_hp_0011",
+      "amount": 30567.5,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T12:33:18+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2566942273",
+        "description": "CMS/RAZORPAY/order_hp_0011/UTR2566942273",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_011",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0023",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_88bec2f9f3",
+      "reference_id": "order_hp_0012",
+      "amount": 32217.88,
+      "currency": "INR",
+      "fee": 644.36,
+      "tax": 115.98,
+      "timestamp": "2026-09-01T12:47:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_88bec2f9f3",
+        "order_id": "order_hp_0012",
+        "method": "netbanking",
+        "utr": "UTR9896606039",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_012",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0024",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR9896606039",
+      "reference_id": "order_hp_0012",
+      "amount": 32217.88,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T12:47:51+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR9896606039",
+        "description": "CMS/RAZORPAY/order_hp_0012/UTR9896606039",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_012",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0025",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_9bfcf0f412",
+      "reference_id": "order_hp_0013",
+      "amount": 11864.2,
+      "currency": "INR",
+      "fee": 237.28,
+      "tax": 42.71,
+      "timestamp": "2026-09-01T13:03:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_9bfcf0f412",
+        "order_id": "order_hp_0013",
+        "method": "netbanking",
+        "utr": "UTR7280359794",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_013",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0026",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR7280359794",
+      "reference_id": "order_hp_0013",
+      "amount": 11864.2,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T13:03:49+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR7280359794",
+        "description": "CMS/RAZORPAY/order_hp_0013/UTR7280359794",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_013",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0027",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_374c11922e",
+      "reference_id": "order_hp_0014",
+      "amount": 26800.05,
+      "currency": "INR",
+      "fee": 536.0,
+      "tax": 96.48,
+      "timestamp": "2026-09-01T13:16:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_374c11922e",
+        "order_id": "order_hp_0014",
+        "method": "card",
+        "utr": "UTR8235363119",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_014",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0028",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR8235363119",
+      "reference_id": "order_hp_0014",
+      "amount": 26800.05,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T13:16:57+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR8235363119",
+        "description": "CMS/RAZORPAY/order_hp_0014/UTR8235363119",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_014",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0029",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_6102ef35e4",
+      "reference_id": "order_hp_0015",
+      "amount": 1686.0,
+      "currency": "INR",
+      "fee": 33.72,
+      "tax": 6.07,
+      "timestamp": "2026-09-01T13:33:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_6102ef35e4",
+        "order_id": "order_hp_0015",
+        "method": "card",
+        "utr": "UTR6649827836",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_015",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0030",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR6649827836",
+      "reference_id": "order_hp_0015",
+      "amount": 1686.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T13:33:18+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR6649827836",
+        "description": "CMS/RAZORPAY/order_hp_0015/UTR6649827836",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_015",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0031",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_207852d09d",
+      "reference_id": "order_hp_0016",
+      "amount": 43843.56,
+      "currency": "INR",
+      "fee": 876.87,
+      "tax": 157.84,
+      "timestamp": "2026-09-01T13:47:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_207852d09d",
+        "order_id": "order_hp_0016",
+        "method": "netbanking",
+        "utr": "UTR8378385615",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_016",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0032",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR8378385615",
+      "reference_id": "order_hp_0016",
+      "amount": 43843.56,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T13:47:36+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR8378385615",
+        "description": "CMS/RAZORPAY/order_hp_0016/UTR8378385615",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_016",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0033",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_8716ecd486",
+      "reference_id": "order_hp_0017",
+      "amount": 19080.99,
+      "currency": "INR",
+      "fee": 381.62,
+      "tax": 68.69,
+      "timestamp": "2026-09-01T14:03:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_8716ecd486",
+        "order_id": "order_hp_0017",
+        "method": "card",
+        "utr": "UTR2970753705",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_017",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0034",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2970753705",
+      "reference_id": "order_hp_0017",
+      "amount": 19080.99,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T14:03:20+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2970753705",
+        "description": "CMS/RAZORPAY/order_hp_0017/UTR2970753705",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_017",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0035",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_a2a9cb5582",
+      "reference_id": "order_hp_0018",
+      "amount": 35797.72,
+      "currency": "INR",
+      "fee": 715.95,
+      "tax": 128.87,
+      "timestamp": "2026-09-01T14:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_a2a9cb5582",
+        "order_id": "order_hp_0018",
+        "method": "upi",
+        "utr": "UTR7609857128",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_018",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0036",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR7609857128",
+      "reference_id": "order_hp_0018",
+      "amount": 35797.72,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T14:20:42+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR7609857128",
+        "description": "CMS/RAZORPAY/order_hp_0018/UTR7609857128",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_018",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0037",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_9c5638b5e8",
+      "reference_id": "order_hp_0019",
+      "amount": 19261.31,
+      "currency": "INR",
+      "fee": 385.23,
+      "tax": 69.34,
+      "timestamp": "2026-09-01T14:35:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_9c5638b5e8",
+        "order_id": "order_hp_0019",
+        "method": "upi",
+        "utr": "UTR5284391408",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_019",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0038",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR5284391408",
+      "reference_id": "order_hp_0019",
+      "amount": 19261.31,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T14:35:10+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR5284391408",
+        "description": "CMS/RAZORPAY/order_hp_0019/UTR5284391408",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_019",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0039",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_a8fcce1c7f",
+      "reference_id": "order_hp_0020",
+      "amount": 36314.18,
+      "currency": "INR",
+      "fee": 726.28,
+      "tax": 130.73,
+      "timestamp": "2026-09-01T14:47:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_a8fcce1c7f",
+        "order_id": "order_hp_0020",
+        "method": "netbanking",
+        "utr": "UTR4698408854",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_020",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0040",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR4698408854",
+      "reference_id": "order_hp_0020",
+      "amount": 36314.18,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T14:47:15+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR4698408854",
+        "description": "CMS/RAZORPAY/order_hp_0020/UTR4698408854",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_020",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0041",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_6f813b3b88",
+      "reference_id": "order_hp_0021",
+      "amount": 38051.0,
+      "currency": "INR",
+      "fee": 761.02,
+      "tax": 136.98,
+      "timestamp": "2026-09-01T15:04:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_6f813b3b88",
+        "order_id": "order_hp_0021",
+        "method": "netbanking",
+        "utr": "UTR5567816720",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_021",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0042",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR5567816720",
+      "reference_id": "order_hp_0021",
+      "amount": 38051.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T15:04:34+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR5567816720",
+        "description": "CMS/RAZORPAY/order_hp_0021/UTR5567816720",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_021",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0043",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_f07f9a4f8a",
+      "reference_id": "order_hp_0022",
+      "amount": 25468.12,
+      "currency": "INR",
+      "fee": 509.36,
+      "tax": 91.69,
+      "timestamp": "2026-09-01T15:16:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_f07f9a4f8a",
+        "order_id": "order_hp_0022",
+        "method": "netbanking",
+        "utr": "UTR9639245200",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_022",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0044",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR9639245200",
+      "reference_id": "order_hp_0022",
+      "amount": 25468.12,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T15:16:39+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR9639245200",
+        "description": "CMS/RAZORPAY/order_hp_0022/UTR9639245200",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_022",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0045",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_bc5a9ad823",
+      "reference_id": "order_hp_0023",
+      "amount": 36079.5,
+      "currency": "INR",
+      "fee": 721.59,
+      "tax": 129.89,
+      "timestamp": "2026-09-01T15:33:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_bc5a9ad823",
+        "order_id": "order_hp_0023",
+        "method": "upi",
+        "utr": "UTR2461042543",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_023",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0046",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2461042543",
+      "reference_id": "order_hp_0023",
+      "amount": 36079.5,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T15:33:15+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2461042543",
+        "description": "CMS/RAZORPAY/order_hp_0023/UTR2461042543",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_023",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0047",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_b8b35780b4",
+      "reference_id": "order_hp_0024",
+      "amount": 21860.68,
+      "currency": "INR",
+      "fee": 437.21,
+      "tax": 78.7,
+      "timestamp": "2026-09-01T15:48:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_b8b35780b4",
+        "order_id": "order_hp_0024",
+        "method": "netbanking",
+        "utr": "UTR4919706735",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_024",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0048",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR4919706735",
+      "reference_id": "order_hp_0024",
+      "amount": 21860.68,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T15:48:37+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR4919706735",
+        "description": "CMS/RAZORPAY/order_hp_0024/UTR4919706735",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_024",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0049",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_bd2a57571a",
+      "reference_id": "order_hp_0025",
+      "amount": 29289.22,
+      "currency": "INR",
+      "fee": 585.78,
+      "tax": 105.44,
+      "timestamp": "2026-09-01T16:02:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_bd2a57571a",
+        "order_id": "order_hp_0025",
+        "method": "netbanking",
+        "utr": "UTR5951406973",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_025",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0050",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR5951406973",
+      "reference_id": "order_hp_0025",
+      "amount": 29289.22,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T16:02:54+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR5951406973",
+        "description": "CMS/RAZORPAY/order_hp_0025/UTR5951406973",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_025",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0051",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_43f379e661",
+      "reference_id": "order_hp_0026",
+      "amount": 44288.47,
+      "currency": "INR",
+      "fee": 885.77,
+      "tax": 159.44,
+      "timestamp": "2026-09-01T16:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_43f379e661",
+        "order_id": "order_hp_0026",
+        "method": "upi",
+        "utr": "UTR4944899549",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_026",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0052",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR4944899549",
+      "reference_id": "order_hp_0026",
+      "amount": 44288.47,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T16:20:36+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR4944899549",
+        "description": "CMS/RAZORPAY/order_hp_0026/UTR4944899549",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_026",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0053",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_18c65661ac",
+      "reference_id": "order_hp_0027",
+      "amount": 1081.96,
+      "currency": "INR",
+      "fee": 21.64,
+      "tax": 3.9,
+      "timestamp": "2026-09-01T16:33:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_18c65661ac",
+        "order_id": "order_hp_0027",
+        "method": "card",
+        "utr": "UTR9285415473",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_027",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0054",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR9285415473",
+      "reference_id": "order_hp_0027",
+      "amount": 1081.96,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T16:33:08+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR9285415473",
+        "description": "CMS/RAZORPAY/order_hp_0027/UTR9285415473",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_027",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0055",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_1e2c72e22a",
+      "reference_id": "order_hp_0028",
+      "amount": 11675.71,
+      "currency": "INR",
+      "fee": 233.51,
+      "tax": 42.03,
+      "timestamp": "2026-09-01T16:49:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_1e2c72e22a",
+        "order_id": "order_hp_0028",
+        "method": "card",
+        "utr": "UTR1338258951",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_028",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0056",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR1338258951",
+      "reference_id": "order_hp_0028",
+      "amount": 11675.71,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T16:49:53+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR1338258951",
+        "description": "CMS/RAZORPAY/order_hp_0028/UTR1338258951",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_028",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0057",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_21adbbd008",
+      "reference_id": "order_hp_0029",
+      "amount": 25639.99,
+      "currency": "INR",
+      "fee": 512.8,
+      "tax": 92.3,
+      "timestamp": "2026-09-01T17:04:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_21adbbd008",
+        "order_id": "order_hp_0029",
+        "method": "netbanking",
+        "utr": "UTR1540137296",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_029",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0058",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR1540137296",
+      "reference_id": "order_hp_0029",
+      "amount": 25639.99,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T17:04:15+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR1540137296",
+        "description": "CMS/RAZORPAY/order_hp_0029/UTR1540137296",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_029",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0059",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_501555aeec",
+      "reference_id": "order_hp_0030",
+      "amount": 12832.96,
+      "currency": "INR",
+      "fee": 256.66,
+      "tax": 46.2,
+      "timestamp": "2026-09-01T17:18:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_501555aeec",
+        "order_id": "order_hp_0030",
+        "method": "upi",
+        "utr": "UTR6633778586",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_030",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0060",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR6633778586",
+      "reference_id": "order_hp_0030",
+      "amount": 12832.96,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T17:18:38+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR6633778586",
+        "description": "CMS/RAZORPAY/order_hp_0030/UTR6633778586",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_030",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0061",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_1b8da7dfcc",
+      "reference_id": "order_hp_0031",
+      "amount": 21753.61,
+      "currency": "INR",
+      "fee": 435.07,
+      "tax": 78.31,
+      "timestamp": "2026-09-01T17:31:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_1b8da7dfcc",
+        "order_id": "order_hp_0031",
+        "method": "upi",
+        "utr": "UTR2064746525",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_031",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0062",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2064746525",
+      "reference_id": "order_hp_0031",
+      "amount": 21753.61,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T17:31:06+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2064746525",
+        "description": "CMS/RAZORPAY/order_hp_0031/UTR2064746525",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_031",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0063",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_cf1ee47cb7",
+      "reference_id": "order_hp_0032",
+      "amount": 28300.57,
+      "currency": "INR",
+      "fee": 566.01,
+      "tax": 101.88,
+      "timestamp": "2026-09-01T17:46:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_cf1ee47cb7",
+        "order_id": "order_hp_0032",
+        "method": "netbanking",
+        "utr": "UTR1945826486",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_032",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0064",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR1945826486",
+      "reference_id": "order_hp_0032",
+      "amount": 28300.57,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T17:46:45+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR1945826486",
+        "description": "CMS/RAZORPAY/order_hp_0032/UTR1945826486",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_032",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0065",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_d34fb6b2aa",
+      "reference_id": "order_hp_0033",
+      "amount": 2967.11,
+      "currency": "INR",
+      "fee": 59.34,
+      "tax": 10.68,
+      "timestamp": "2026-09-01T18:05:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_d34fb6b2aa",
+        "order_id": "order_hp_0033",
+        "method": "card",
+        "utr": "UTR2419179580",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_033",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0066",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2419179580",
+      "reference_id": "order_hp_0033",
+      "amount": 2967.11,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T18:05:22+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2419179580",
+        "description": "CMS/RAZORPAY/order_hp_0033/UTR2419179580",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_033",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0067",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_4b5c78bddd",
+      "reference_id": "order_hp_0034",
+      "amount": 32160.59,
+      "currency": "INR",
+      "fee": 643.21,
+      "tax": 115.78,
+      "timestamp": "2026-09-01T18:19:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_4b5c78bddd",
+        "order_id": "order_hp_0034",
+        "method": "upi",
+        "utr": "UTR3030106617",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_034",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0068",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR3030106617",
+      "reference_id": "order_hp_0034",
+      "amount": 32160.59,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T18:19:17+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR3030106617",
+        "description": "CMS/RAZORPAY/order_hp_0034/UTR3030106617",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_034",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0069",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_9e16894eec",
+      "reference_id": "order_hp_0035",
+      "amount": 4663.49,
+      "currency": "INR",
+      "fee": 93.27,
+      "tax": 16.79,
+      "timestamp": "2026-09-01T18:33:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_9e16894eec",
+        "order_id": "order_hp_0035",
+        "method": "upi",
+        "utr": "UTR8125276666",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_035",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0070",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR8125276666",
+      "reference_id": "order_hp_0035",
+      "amount": 4663.49,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T18:33:31+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR8125276666",
+        "description": "CMS/RAZORPAY/order_hp_0035/UTR8125276666",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_035",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0071",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_c86aa4e63a",
+      "reference_id": "order_hp_0036",
+      "amount": 22497.13,
+      "currency": "INR",
+      "fee": 449.94,
+      "tax": 80.99,
+      "timestamp": "2026-09-01T18:46:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_c86aa4e63a",
+        "order_id": "order_hp_0036",
+        "method": "card",
+        "utr": "UTR4131356954",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_036",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0072",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR4131356954",
+      "reference_id": "order_hp_0036",
+      "amount": 22497.13,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T18:46:30+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR4131356954",
+        "description": "CMS/RAZORPAY/order_hp_0036/UTR4131356954",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_036",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0073",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_d9eb67f50c",
+      "reference_id": "order_hp_0037",
+      "amount": 34995.02,
+      "currency": "INR",
+      "fee": 699.9,
+      "tax": 125.98,
+      "timestamp": "2026-09-01T19:02:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_d9eb67f50c",
+        "order_id": "order_hp_0037",
+        "method": "card",
+        "utr": "UTR1469306919",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_037",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0074",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR1469306919",
+      "reference_id": "order_hp_0037",
+      "amount": 34995.02,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T19:02:39+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR1469306919",
+        "description": "CMS/RAZORPAY/order_hp_0037/UTR1469306919",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_037",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0075",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_9c09fe4399",
+      "reference_id": "order_hp_0038",
+      "amount": 21616.16,
+      "currency": "INR",
+      "fee": 432.32,
+      "tax": 77.82,
+      "timestamp": "2026-09-01T19:18:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_9c09fe4399",
+        "order_id": "order_hp_0038",
+        "method": "upi",
+        "utr": "UTR2811967841",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_038",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0076",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2811967841",
+      "reference_id": "order_hp_0038",
+      "amount": 21616.16,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T19:18:20+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2811967841",
+        "description": "CMS/RAZORPAY/order_hp_0038/UTR2811967841",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_038",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0077",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_80f2fcc043",
+      "reference_id": "order_hp_0039",
+      "amount": 41994.15,
+      "currency": "INR",
+      "fee": 839.88,
+      "tax": 151.18,
+      "timestamp": "2026-09-01T19:35:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_80f2fcc043",
+        "order_id": "order_hp_0039",
+        "method": "card",
+        "utr": "UTR5618742930",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_039",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0078",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR5618742930",
+      "reference_id": "order_hp_0039",
+      "amount": 41994.15,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T19:35:08+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR5618742930",
+        "description": "CMS/RAZORPAY/order_hp_0039/UTR5618742930",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_039",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0079",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_227d7f2359",
+      "reference_id": "order_hp_0040",
+      "amount": 31355.13,
+      "currency": "INR",
+      "fee": 627.1,
+      "tax": 112.88,
+      "timestamp": "2026-09-01T19:49:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_227d7f2359",
+        "order_id": "order_hp_0040",
+        "method": "upi",
+        "utr": "UTR2015242176",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_040",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0080",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2015242176",
+      "reference_id": "order_hp_0040",
+      "amount": 31355.13,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T19:49:35+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2015242176",
+        "description": "CMS/RAZORPAY/order_hp_0040/UTR2015242176",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_040",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0081",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_26f17346f1",
+      "reference_id": "order_hp_0041",
+      "amount": 10377.81,
+      "currency": "INR",
+      "fee": 207.56,
+      "tax": 37.36,
+      "timestamp": "2026-09-01T20:04:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_26f17346f1",
+        "order_id": "order_hp_0041",
+        "method": "card",
+        "utr": "UTR1251837136",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_041",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0082",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR1251837136",
+      "reference_id": "order_hp_0041",
+      "amount": 10377.81,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T20:04:29+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR1251837136",
+        "description": "CMS/RAZORPAY/order_hp_0041/UTR1251837136",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_041",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0083",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_ced49a2489",
+      "reference_id": "order_hp_0042",
+      "amount": 12839.97,
+      "currency": "INR",
+      "fee": 256.8,
+      "tax": 46.22,
+      "timestamp": "2026-09-01T20:19:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_ced49a2489",
+        "order_id": "order_hp_0042",
+        "method": "netbanking",
+        "utr": "UTR7249213370",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_042",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0084",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR7249213370",
+      "reference_id": "order_hp_0042",
+      "amount": 12839.97,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T20:19:51+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR7249213370",
+        "description": "CMS/RAZORPAY/order_hp_0042/UTR7249213370",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_042",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0085",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_5086203ed6",
+      "reference_id": "order_hp_0043",
+      "amount": 47780.98,
+      "currency": "INR",
+      "fee": 955.62,
+      "tax": 172.01,
+      "timestamp": "2026-09-01T20:32:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_5086203ed6",
+        "order_id": "order_hp_0043",
+        "method": "card",
+        "utr": "UTR8380507338",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_043",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0086",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR8380507338",
+      "reference_id": "order_hp_0043",
+      "amount": 47780.98,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T20:32:23+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR8380507338",
+        "description": "CMS/RAZORPAY/order_hp_0043/UTR8380507338",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_043",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0087",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_31b5f446b5",
+      "reference_id": "order_hp_0044",
+      "amount": 10566.99,
+      "currency": "INR",
+      "fee": 211.34,
+      "tax": 38.04,
+      "timestamp": "2026-09-01T20:50:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_31b5f446b5",
+        "order_id": "order_hp_0044",
+        "method": "card",
+        "utr": "UTR9841118422",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_044",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0088",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR9841118422",
+      "reference_id": "order_hp_0044",
+      "amount": 10566.99,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T20:50:52+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR9841118422",
+        "description": "CMS/RAZORPAY/order_hp_0044/UTR9841118422",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_044",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0089",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_32fa9fc4ed",
+      "reference_id": "order_hp_0045",
+      "amount": 15155.99,
+      "currency": "INR",
+      "fee": 303.12,
+      "tax": 54.56,
+      "timestamp": "2026-09-01T21:04:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_32fa9fc4ed",
+        "order_id": "order_hp_0045",
+        "method": "netbanking",
+        "utr": "UTR9805294274",
+        "gateway": "Razorpay"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_045",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0090",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR9805294274",
+      "reference_id": "order_hp_0045",
+      "amount": 15155.99,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T21:04:59+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR9805294274",
+        "description": "CMS/RAZORPAY/order_hp_0045/UTR9805294274",
+        "bank_name": "HDFC Bank",
+        "entry_type": "CREDIT"
+      },
+      "gt_match_id": "GT_HAPPY_1to1_045",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0091",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_66da6f78e9",
+      "reference_id": "order_triplet_0001",
+      "amount": 25564.39,
+      "currency": "INR",
+      "fee": 511.29,
+      "tax": 92.03,
+      "timestamp": "2026-09-01T22:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_66da6f78e9",
+        "order_id": "order_triplet_0001",
+        "utr": "UTR3181106786"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_001",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0092",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR3181106786",
+      "reference_id": "order_triplet_0001",
+      "amount": 25564.39,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T22:01:58+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR3181106786",
+        "description": "NEFT-RAZORPAY-order_triplet_0001"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_001",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0093",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0001",
+      "reference_id": "order_triplet_0001",
+      "amount": 25564.39,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T22:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0001",
+        "order_id": "order_triplet_0001",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_001",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0094",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_dc26ff4f48",
+      "reference_id": "order_triplet_0002",
+      "amount": 9041.72,
+      "currency": "INR",
+      "fee": 180.83,
+      "tax": 32.55,
+      "timestamp": "2026-09-01T22:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_dc26ff4f48",
+        "order_id": "order_triplet_0002",
+        "utr": "UTR3555656321"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_002",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0095",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR3555656321",
+      "reference_id": "order_triplet_0002",
+      "amount": 9041.72,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T22:21:36+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR3555656321",
+        "description": "NEFT-RAZORPAY-order_triplet_0002"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_002",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0096",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0002",
+      "reference_id": "order_triplet_0002",
+      "amount": 9041.72,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T22:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0002",
+        "order_id": "order_triplet_0002",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_002",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0097",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_04e961d1a9",
+      "reference_id": "order_triplet_0003",
+      "amount": 41388.05,
+      "currency": "INR",
+      "fee": 827.76,
+      "tax": 149.0,
+      "timestamp": "2026-09-01T22:40:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_04e961d1a9",
+        "order_id": "order_triplet_0003",
+        "utr": "UTR2734202799"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_003",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0098",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2734202799",
+      "reference_id": "order_triplet_0003",
+      "amount": 41388.05,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T22:41:22+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2734202799",
+        "description": "NEFT-RAZORPAY-order_triplet_0003"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_003",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0099",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0003",
+      "reference_id": "order_triplet_0003",
+      "amount": 41388.05,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T22:40:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0003",
+        "order_id": "order_triplet_0003",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_003",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0100",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_72f27931ce",
+      "reference_id": "order_triplet_0004",
+      "amount": 11931.4,
+      "currency": "INR",
+      "fee": 238.63,
+      "tax": 42.95,
+      "timestamp": "2026-09-01T23:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_72f27931ce",
+        "order_id": "order_triplet_0004",
+        "utr": "UTR3553440342"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_004",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0101",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR3553440342",
+      "reference_id": "order_triplet_0004",
+      "amount": 11931.4,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T23:01:29+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR3553440342",
+        "description": "NEFT-RAZORPAY-order_triplet_0004"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_004",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0102",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0004",
+      "reference_id": "order_triplet_0004",
+      "amount": 11931.4,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T23:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0004",
+        "order_id": "order_triplet_0004",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_004",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0103",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_27a8d1edc3",
+      "reference_id": "order_triplet_0005",
+      "amount": 4072.91,
+      "currency": "INR",
+      "fee": 81.46,
+      "tax": 14.66,
+      "timestamp": "2026-09-01T23:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_27a8d1edc3",
+        "order_id": "order_triplet_0005",
+        "utr": "UTR2119980130"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_005",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0104",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2119980130",
+      "reference_id": "order_triplet_0005",
+      "amount": 4072.91,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T23:21:35+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2119980130",
+        "description": "NEFT-RAZORPAY-order_triplet_0005"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_005",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0105",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0005",
+      "reference_id": "order_triplet_0005",
+      "amount": 4072.91,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T23:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0005",
+        "order_id": "order_triplet_0005",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_005",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0106",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_1a8f16e638",
+      "reference_id": "order_triplet_0006",
+      "amount": 34419.78,
+      "currency": "INR",
+      "fee": 688.4,
+      "tax": 123.91,
+      "timestamp": "2026-09-01T23:40:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_1a8f16e638",
+        "order_id": "order_triplet_0006",
+        "utr": "UTR6320115677"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_006",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0107",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR6320115677",
+      "reference_id": "order_triplet_0006",
+      "amount": 34419.78,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T23:41:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR6320115677",
+        "description": "NEFT-RAZORPAY-order_triplet_0006"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_006",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0108",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0006",
+      "reference_id": "order_triplet_0006",
+      "amount": 34419.78,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T23:40:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0006",
+        "order_id": "order_triplet_0006",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_006",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0109",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_9246dba883",
+      "reference_id": "order_triplet_0007",
+      "amount": 6412.53,
+      "currency": "INR",
+      "fee": 128.25,
+      "tax": 23.09,
+      "timestamp": "2026-09-02T00:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_9246dba883",
+        "order_id": "order_triplet_0007",
+        "utr": "UTR8067372072"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_007",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0110",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR8067372072",
+      "reference_id": "order_triplet_0007",
+      "amount": 6412.53,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T00:01:08+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR8067372072",
+        "description": "NEFT-RAZORPAY-order_triplet_0007"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_007",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0111",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0007",
+      "reference_id": "order_triplet_0007",
+      "amount": 6412.53,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T00:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0007",
+        "order_id": "order_triplet_0007",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_007",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0112",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_4fbede03c3",
+      "reference_id": "order_triplet_0008",
+      "amount": 15279.08,
+      "currency": "INR",
+      "fee": 305.58,
+      "tax": 55.0,
+      "timestamp": "2026-09-02T00:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_4fbede03c3",
+        "order_id": "order_triplet_0008",
+        "utr": "UTR1311570307"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_008",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0113",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR1311570307",
+      "reference_id": "order_triplet_0008",
+      "amount": 15279.08,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T00:21:08+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR1311570307",
+        "description": "NEFT-RAZORPAY-order_triplet_0008"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_008",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0114",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0008",
+      "reference_id": "order_triplet_0008",
+      "amount": 15279.08,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T00:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0008",
+        "order_id": "order_triplet_0008",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_008",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0115",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_5eb87f8fb4",
+      "reference_id": "order_triplet_0009",
+      "amount": 29872.47,
+      "currency": "INR",
+      "fee": 597.45,
+      "tax": 107.54,
+      "timestamp": "2026-09-02T00:40:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_5eb87f8fb4",
+        "order_id": "order_triplet_0009",
+        "utr": "UTR1429416213"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_009",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0116",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR1429416213",
+      "reference_id": "order_triplet_0009",
+      "amount": 29872.47,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T00:41:18+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR1429416213",
+        "description": "NEFT-RAZORPAY-order_triplet_0009"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_009",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0117",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0009",
+      "reference_id": "order_triplet_0009",
+      "amount": 29872.47,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T00:40:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0009",
+        "order_id": "order_triplet_0009",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_009",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0118",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_fb5a67f1f3",
+      "reference_id": "order_triplet_0010",
+      "amount": 10349.43,
+      "currency": "INR",
+      "fee": 206.99,
+      "tax": 37.26,
+      "timestamp": "2026-09-02T01:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_fb5a67f1f3",
+        "order_id": "order_triplet_0010",
+        "utr": "UTR2139027119"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_010",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0119",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR2139027119",
+      "reference_id": "order_triplet_0010",
+      "amount": 10349.43,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T01:00:54+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR2139027119",
+        "description": "NEFT-RAZORPAY-order_triplet_0010"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_010",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0120",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0010",
+      "reference_id": "order_triplet_0010",
+      "amount": 10349.43,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T01:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0010",
+        "order_id": "order_triplet_0010",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_010",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0121",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_863b1b762b",
+      "reference_id": "order_triplet_0011",
+      "amount": 42299.35,
+      "currency": "INR",
+      "fee": 845.99,
+      "tax": 152.28,
+      "timestamp": "2026-09-02T01:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_863b1b762b",
+        "order_id": "order_triplet_0011",
+        "utr": "UTR4776436931"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_011",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0122",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR4776436931",
+      "reference_id": "order_triplet_0011",
+      "amount": 42299.35,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T01:20:57+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR4776436931",
+        "description": "NEFT-RAZORPAY-order_triplet_0011"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_011",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0123",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0011",
+      "reference_id": "order_triplet_0011",
+      "amount": 42299.35,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T01:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0011",
+        "order_id": "order_triplet_0011",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_011",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0124",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_5eceb8b95e",
+      "reference_id": "order_triplet_0012",
+      "amount": 13786.65,
+      "currency": "INR",
+      "fee": 275.73,
+      "tax": 49.63,
+      "timestamp": "2026-09-02T01:40:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_5eceb8b95e",
+        "order_id": "order_triplet_0012",
+        "utr": "UTR3271782991"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_012",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0125",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR3271782991",
+      "reference_id": "order_triplet_0012",
+      "amount": 13786.65,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T01:41:35+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR3271782991",
+        "description": "NEFT-RAZORPAY-order_triplet_0012"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_012",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0126",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0012",
+      "reference_id": "order_triplet_0012",
+      "amount": 13786.65,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T01:40:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0012",
+        "order_id": "order_triplet_0012",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_012",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0127",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_4bf35763b2",
+      "reference_id": "order_triplet_0013",
+      "amount": 39248.43,
+      "currency": "INR",
+      "fee": 784.97,
+      "tax": 141.29,
+      "timestamp": "2026-09-02T02:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_4bf35763b2",
+        "order_id": "order_triplet_0013",
+        "utr": "UTR3849232839"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_013",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0128",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR3849232839",
+      "reference_id": "order_triplet_0013",
+      "amount": 39248.43,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T02:00:27+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR3849232839",
+        "description": "NEFT-RAZORPAY-order_triplet_0013"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_013",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0129",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0013",
+      "reference_id": "order_triplet_0013",
+      "amount": 39248.43,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T02:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0013",
+        "order_id": "order_triplet_0013",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_013",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0130",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_d6d9fe8afc",
+      "reference_id": "order_triplet_0014",
+      "amount": 12804.69,
+      "currency": "INR",
+      "fee": 256.09,
+      "tax": 46.1,
+      "timestamp": "2026-09-02T02:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_d6d9fe8afc",
+        "order_id": "order_triplet_0014",
+        "utr": "UTR4821286999"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_014",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0131",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR4821286999",
+      "reference_id": "order_triplet_0014",
+      "amount": 12804.69,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T02:21:45+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR4821286999",
+        "description": "NEFT-RAZORPAY-order_triplet_0014"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_014",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0132",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0014",
+      "reference_id": "order_triplet_0014",
+      "amount": 12804.69,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T02:20:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0014",
+        "order_id": "order_triplet_0014",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_014",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0133",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_2d0194d417",
+      "reference_id": "order_triplet_0015",
+      "amount": 26621.75,
+      "currency": "INR",
+      "fee": 532.44,
+      "tax": 95.84,
+      "timestamp": "2026-09-02T02:40:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_2d0194d417",
+        "order_id": "order_triplet_0015",
+        "utr": "UTR6464693977"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_015",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0134",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR6464693977",
+      "reference_id": "order_triplet_0015",
+      "amount": 26621.75,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T02:41:27+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR6464693977",
+        "description": "NEFT-RAZORPAY-order_triplet_0015"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_015",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0135",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "LEDGER_0015",
+      "reference_id": "order_triplet_0015",
+      "amount": 26621.75,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T02:40:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "ledger_id": "LEDGER_0015",
+        "order_id": "order_triplet_0015",
+        "account": "1001-Sales"
+      },
+      "gt_match_id": "GT_HAPPY_1to1to1_015",
+      "gt_exception_type": null
+    },
+    {
+      "record_id": "REC_0136",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_da60d1a65e",
+      "reference_id": "order_timeoff_001",
+      "amount": 10228.63,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_da60d1a65e",
+        "order_id": "order_timeoff_001",
+        "timezone": "UTC"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_01",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0137",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_TIMEOFF_001",
+      "reference_id": "order_timeoff_001",
+      "amount": 10228.63,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T15:30:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_TIMEOFF_001",
+        "description": "RAZORPAY-order_timeoff_001",
+        "timezone": "IST"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_01",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0138",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_8d18fe9c18",
+      "reference_id": "order_timeoff_002",
+      "amount": 16556.82,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T12:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_8d18fe9c18",
+        "order_id": "order_timeoff_002",
+        "timezone": "UTC"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_02",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0139",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_TIMEOFF_002",
+      "reference_id": "order_timeoff_002",
+      "amount": 16556.82,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T17:30:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_TIMEOFF_002",
+        "description": "RAZORPAY-order_timeoff_002",
+        "timezone": "IST"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_02",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0140",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_ac498cc1c3",
+      "reference_id": "order_timeoff_003",
+      "amount": 33046.74,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T14:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_ac498cc1c3",
+        "order_id": "order_timeoff_003",
+        "timezone": "UTC"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_03",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0141",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_TIMEOFF_003",
+      "reference_id": "order_timeoff_003",
+      "amount": 33046.74,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T19:30:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_TIMEOFF_003",
+        "description": "RAZORPAY-order_timeoff_003",
+        "timezone": "IST"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_03",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0142",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_332844fab6",
+      "reference_id": "order_timeoff_004",
+      "amount": 40961.88,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T16:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_332844fab6",
+        "order_id": "order_timeoff_004",
+        "timezone": "UTC"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_04",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0143",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_TIMEOFF_004",
+      "reference_id": "order_timeoff_004",
+      "amount": 40961.88,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T21:30:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_TIMEOFF_004",
+        "description": "RAZORPAY-order_timeoff_004",
+        "timezone": "IST"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_04",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0144",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_06e9da52ef",
+      "reference_id": "order_timeoff_005",
+      "amount": 24333.82,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T18:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_06e9da52ef",
+        "order_id": "order_timeoff_005",
+        "timezone": "UTC"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_05",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0145",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_TIMEOFF_005",
+      "reference_id": "order_timeoff_005",
+      "amount": 24333.82,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T23:30:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_TIMEOFF_005",
+        "description": "RAZORPAY-order_timeoff_005",
+        "timezone": "IST"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_05",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0146",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_fc0e7d51da",
+      "reference_id": "order_timeoff_006",
+      "amount": 12166.15,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T20:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_fc0e7d51da",
+        "order_id": "order_timeoff_006",
+        "timezone": "UTC"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_06",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0147",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_TIMEOFF_006",
+      "reference_id": "order_timeoff_006",
+      "amount": 12166.15,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T01:30:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_TIMEOFF_006",
+        "description": "RAZORPAY-order_timeoff_006",
+        "timezone": "IST"
+      },
+      "gt_match_id": "GT_CLUSTER_TIMEOFFSET_06",
+      "gt_exception_type": "TIME_OFFSET"
+    },
+    {
+      "record_id": "REC_0148",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_a76d789452",
+      "reference_id": "order_fee_001",
+      "amount": 43605.41,
+      "currency": "INR",
+      "fee": 875.11,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_a76d789452",
+        "order_id": "order_fee_001",
+        "gross_amount": 43605.41
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_01",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0149",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_FEE_001",
+      "reference_id": "order_fee_001",
+      "amount": 42730.3,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T10:10:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_FEE_001",
+        "description": "RZP-NET-CREDIT-order_fee_001",
+        "net_credited": 42730.3
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_01",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0150",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_234d926aae",
+      "reference_id": "order_fee_002",
+      "amount": 2580.73,
+      "currency": "INR",
+      "fee": 54.61,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T13:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_234d926aae",
+        "order_id": "order_fee_002",
+        "gross_amount": 2580.73
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_02",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0151",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_FEE_002",
+      "reference_id": "order_fee_002",
+      "amount": 2526.12,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T13:10:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_FEE_002",
+        "description": "RZP-NET-CREDIT-order_fee_002",
+        "net_credited": 2526.12
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_02",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0152",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_71d7e9cf14",
+      "reference_id": "order_fee_003",
+      "amount": 30500.51,
+      "currency": "INR",
+      "fee": 613.01,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T16:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_71d7e9cf14",
+        "order_id": "order_fee_003",
+        "gross_amount": 30500.51
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_03",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0153",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_FEE_003",
+      "reference_id": "order_fee_003",
+      "amount": 29887.5,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T16:10:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_FEE_003",
+        "description": "RZP-NET-CREDIT-order_fee_003",
+        "net_credited": 29887.5
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_03",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0154",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_0e30952ad9",
+      "reference_id": "order_fee_004",
+      "amount": 39834.31,
+      "currency": "INR",
+      "fee": 799.69,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T19:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_0e30952ad9",
+        "order_id": "order_fee_004",
+        "gross_amount": 39834.31
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_04",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0155",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_FEE_004",
+      "reference_id": "order_fee_004",
+      "amount": 39034.62,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T19:10:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_FEE_004",
+        "description": "RZP-NET-CREDIT-order_fee_004",
+        "net_credited": 39034.62
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_04",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0156",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_da0d47b7fd",
+      "reference_id": "order_fee_005",
+      "amount": 2259.55,
+      "currency": "INR",
+      "fee": 48.19,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T22:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_da0d47b7fd",
+        "order_id": "order_fee_005",
+        "gross_amount": 2259.55
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_05",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0157",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_FEE_005",
+      "reference_id": "order_fee_005",
+      "amount": 2211.36,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T22:10:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_FEE_005",
+        "description": "RZP-NET-CREDIT-order_fee_005",
+        "net_credited": 2211.36
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_05",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0158",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_38e733721a",
+      "reference_id": "order_fee_006",
+      "amount": 16110.68,
+      "currency": "INR",
+      "fee": 325.21,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T01:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_38e733721a",
+        "order_id": "order_fee_006",
+        "gross_amount": 16110.68
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_06",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0159",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_FEE_006",
+      "reference_id": "order_fee_006",
+      "amount": 15785.47,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T01:10:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_FEE_006",
+        "description": "RZP-NET-CREDIT-order_fee_006",
+        "net_credited": 15785.47
+      },
+      "gt_match_id": "GT_CLUSTER_FEE_06",
+      "gt_exception_type": "FEE_MISMATCH"
+    },
+    {
+      "record_id": "REC_0160",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_m1_01",
+      "reference_id": "order_m1_01",
+      "amount": 1000.0,
+      "currency": "INR",
+      "fee": 20.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_m1_01",
+        "settlement_id": "set_razorpay_batch_88",
+        "order_id": "order_m1_01"
+      },
+      "gt_match_id": "GT_CLUSTER_MANY_TO_ONE_01",
+      "gt_exception_type": "MANY_TO_ONE"
+    },
+    {
+      "record_id": "REC_0161",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_m1_02",
+      "reference_id": "order_m1_02",
+      "amount": 1250.0,
+      "currency": "INR",
+      "fee": 25.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T08:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_m1_02",
+        "settlement_id": "set_razorpay_batch_88",
+        "order_id": "order_m1_02"
+      },
+      "gt_match_id": "GT_CLUSTER_MANY_TO_ONE_01",
+      "gt_exception_type": "MANY_TO_ONE"
+    },
+    {
+      "record_id": "REC_0162",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_m1_03",
+      "reference_id": "order_m1_03",
+      "amount": 1500.0,
+      "currency": "INR",
+      "fee": 30.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T06:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_m1_03",
+        "settlement_id": "set_razorpay_batch_88",
+        "order_id": "order_m1_03"
+      },
+      "gt_match_id": "GT_CLUSTER_MANY_TO_ONE_01",
+      "gt_exception_type": "MANY_TO_ONE"
+    },
+    {
+      "record_id": "REC_0163",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_m1_04",
+      "reference_id": "order_m1_04",
+      "amount": 1750.0,
+      "currency": "INR",
+      "fee": 35.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T04:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_m1_04",
+        "settlement_id": "set_razorpay_batch_88",
+        "order_id": "order_m1_04"
+      },
+      "gt_match_id": "GT_CLUSTER_MANY_TO_ONE_01",
+      "gt_exception_type": "MANY_TO_ONE"
+    },
+    {
+      "record_id": "REC_0164",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_m1_05",
+      "reference_id": "order_m1_05",
+      "amount": 2000.0,
+      "currency": "INR",
+      "fee": 40.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T02:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_m1_05",
+        "settlement_id": "set_razorpay_batch_88",
+        "order_id": "order_m1_05"
+      },
+      "gt_match_id": "GT_CLUSTER_MANY_TO_ONE_01",
+      "gt_exception_type": "MANY_TO_ONE"
+    },
+    {
+      "record_id": "REC_0165",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_m1_06",
+      "reference_id": "order_m1_06",
+      "amount": 2250.0,
+      "currency": "INR",
+      "fee": 45.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T00:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_m1_06",
+        "settlement_id": "set_razorpay_batch_88",
+        "order_id": "order_m1_06"
+      },
+      "gt_match_id": "GT_CLUSTER_MANY_TO_ONE_01",
+      "gt_exception_type": "MANY_TO_ONE"
+    },
+    {
+      "record_id": "REC_0166",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_m1_07",
+      "reference_id": "order_m1_07",
+      "amount": 2500.0,
+      "currency": "INR",
+      "fee": 50.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T22:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_m1_07",
+        "settlement_id": "set_razorpay_batch_88",
+        "order_id": "order_m1_07"
+      },
+      "gt_match_id": "GT_CLUSTER_MANY_TO_ONE_01",
+      "gt_exception_type": "MANY_TO_ONE"
+    },
+    {
+      "record_id": "REC_0167",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_m1_08",
+      "reference_id": "order_m1_08",
+      "amount": 2750.0,
+      "currency": "INR",
+      "fee": 55.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T20:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "payment_id": "pay_m1_08",
+        "settlement_id": "set_razorpay_batch_88",
+        "order_id": "order_m1_08"
+      },
+      "gt_match_id": "GT_CLUSTER_MANY_TO_ONE_01",
+      "gt_exception_type": "MANY_TO_ONE"
+    },
+    {
+      "record_id": "REC_0168",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_SETTLEMENT_BATCH_88",
+      "reference_id": "set_razorpay_batch_88",
+      "amount": 14700.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "utr": "UTR_SETTLEMENT_BATCH_88",
+        "settlement_id": "set_razorpay_batch_88",
+        "description": "RAZORPAY-SETTLEMENT-set_razorpay_batch_88-NET-14700.0"
+      },
+      "gt_match_id": "GT_CLUSTER_MANY_TO_ONE_01",
+      "gt_exception_type": "MANY_TO_ONE"
+    },
+    {
+      "record_id": "REC_0169",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_err_amt_1",
+      "reference_id": "order_amt_mismatch_1",
+      "amount": 5000.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "order_id": "order_amt_mismatch_1"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "AMOUNT_OUT_OF_TOLERANCE"
+    },
+    {
+      "record_id": "REC_0170",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_ERR_AMT_1",
+      "reference_id": "order_amt_mismatch_1",
+      "amount": 4550.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "order_id": "order_amt_mismatch_1"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "AMOUNT_OUT_OF_TOLERANCE"
+    },
+    {
+      "record_id": "REC_0171",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_err_amt_2",
+      "reference_id": "order_amt_mismatch_2",
+      "amount": 6000.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "order_id": "order_amt_mismatch_2"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "AMOUNT_OUT_OF_TOLERANCE"
+    },
+    {
+      "record_id": "REC_0172",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_ERR_AMT_2",
+      "reference_id": "order_amt_mismatch_2",
+      "amount": 5550.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "order_id": "order_amt_mismatch_2"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "AMOUNT_OUT_OF_TOLERANCE"
+    },
+    {
+      "record_id": "REC_0173",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_err_amt_3",
+      "reference_id": "order_amt_mismatch_3",
+      "amount": 7000.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "order_id": "order_amt_mismatch_3"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "AMOUNT_OUT_OF_TOLERANCE"
+    },
+    {
+      "record_id": "REC_0174",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_ERR_AMT_3",
+      "reference_id": "order_amt_mismatch_3",
+      "amount": 6550.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "order_id": "order_amt_mismatch_3"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "AMOUNT_OUT_OF_TOLERANCE"
+    },
+    {
+      "record_id": "REC_0175",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_missing_ref_1",
+      "reference_id": "order_valid_1",
+      "amount": 2500.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "order_id": "order_valid_1"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "MISSING_REF"
+    },
+    {
+      "record_id": "REC_0176",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_CORRUPTED_1",
+      "reference_id": null,
+      "amount": 2500.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "description": "DIRECT DEPOSIT GARBLED NARRATION"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "MISSING_REF"
+    },
+    {
+      "record_id": "REC_0177",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_missing_ref_2",
+      "reference_id": "order_valid_2",
+      "amount": 3000.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "order_id": "order_valid_2"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "MISSING_REF"
+    },
+    {
+      "record_id": "REC_0178",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_CORRUPTED_2",
+      "reference_id": null,
+      "amount": 3000.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "description": "DIRECT DEPOSIT GARBLED NARRATION"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "MISSING_REF"
+    },
+    {
+      "record_id": "REC_0179",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_missing_ref_3",
+      "reference_id": "order_valid_3",
+      "amount": 3500.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "order_id": "order_valid_3"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "MISSING_REF"
+    },
+    {
+      "record_id": "REC_0180",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "UTR_CORRUPTED_3",
+      "reference_id": null,
+      "amount": 3500.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "description": "DIRECT DEPOSIT GARBLED NARRATION"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "MISSING_REF"
+    },
+    {
+      "record_id": "REC_0181",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_dup_001",
+      "reference_id": "order_dup_001",
+      "amount": 7500.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "note": "original"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "DUPLICATE_ENTRY"
+    },
+    {
+      "record_id": "REC_0182",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "pay_dup_001",
+      "reference_id": "order_dup_001",
+      "amount": 7500.0,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-01T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "note": "accidental duplicate export retry"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "DUPLICATE_ENTRY"
+    },
+    {
+      "record_id": "REC_0183",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "EXT_ORPHAN_01",
+      "reference_id": "REF_ORPHAN_01",
+      "amount": 30635.88,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "GATEWAY",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0184",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "EXT_ORPHAN_02",
+      "reference_id": "REF_ORPHAN_02",
+      "amount": 35617.9,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-05T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "GATEWAY",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0185",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "EXT_ORPHAN_03",
+      "reference_id": "REF_ORPHAN_03",
+      "amount": 612.7,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "LEDGER",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0186",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "EXT_ORPHAN_04",
+      "reference_id": "REF_ORPHAN_04",
+      "amount": 43402.98,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "LEDGER",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0187",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "EXT_ORPHAN_05",
+      "reference_id": "REF_ORPHAN_05",
+      "amount": 28023.08,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "BANK",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0188",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "EXT_ORPHAN_06",
+      "reference_id": "REF_ORPHAN_06",
+      "amount": 6248.27,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "BANK",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0189",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "EXT_ORPHAN_07",
+      "reference_id": "REF_ORPHAN_07",
+      "amount": 43166.26,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "BANK",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0190",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "EXT_ORPHAN_08",
+      "reference_id": "REF_ORPHAN_08",
+      "amount": 10202.16,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "BANK",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0191",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "EXT_ORPHAN_09",
+      "reference_id": "REF_ORPHAN_09",
+      "amount": 5068.67,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-05T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "LEDGER",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0192",
+      "batch_id": "batch_200",
+      "source_type": "LEDGER",
+      "external_id": "EXT_ORPHAN_10",
+      "reference_id": "REF_ORPHAN_10",
+      "amount": 36012.5,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "LEDGER",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0193",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "EXT_ORPHAN_11",
+      "reference_id": "REF_ORPHAN_11",
+      "amount": 46861.46,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "GATEWAY",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0194",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "EXT_ORPHAN_12",
+      "reference_id": "REF_ORPHAN_12",
+      "amount": 1336.03,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-04T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "BANK",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0195",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "EXT_ORPHAN_13",
+      "reference_id": "REF_ORPHAN_13",
+      "amount": 38536.95,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "BANK",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0196",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "EXT_ORPHAN_14",
+      "reference_id": "REF_ORPHAN_14",
+      "amount": 7767.62,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-02T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "BANK",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0197",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "EXT_ORPHAN_15",
+      "reference_id": "REF_ORPHAN_15",
+      "amount": 41883.18,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-05T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "BANK",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0198",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "EXT_ORPHAN_16",
+      "reference_id": "REF_ORPHAN_16",
+      "amount": 9699.56,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-05T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "GATEWAY",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0199",
+      "batch_id": "batch_200",
+      "source_type": "BANK",
+      "external_id": "EXT_ORPHAN_17",
+      "reference_id": "REF_ORPHAN_17",
+      "amount": 14753.38,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "BANK",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    },
+    {
+      "record_id": "REC_0200",
+      "batch_id": "batch_200",
+      "source_type": "GATEWAY",
+      "external_id": "EXT_ORPHAN_18",
+      "reference_id": "REF_ORPHAN_18",
+      "amount": 1282.34,
+      "currency": "INR",
+      "fee": 0.0,
+      "tax": 0.0,
+      "timestamp": "2026-09-03T10:00:00+00:00",
+      "status": "UNMATCHED",
+      "raw_data": {
+        "orphan_source": "GATEWAY",
+        "reason": "unmatched bank charge or cancelled order"
+      },
+      "gt_match_id": null,
+      "gt_exception_type": "TRUE_SINGLETON"
+    }
+  ],
+  "eval_manifest": {
+    "batch_id": "batch_200",
+    "ground_truth_matches": {
+      "GT_HAPPY_1to1_001": [
+        "REC_0001",
+        "REC_0002"
+      ],
+      "GT_HAPPY_1to1_002": [
+        "REC_0003",
+        "REC_0004"
+      ],
+      "GT_HAPPY_1to1_003": [
+        "REC_0005",
+        "REC_0006"
+      ],
+      "GT_HAPPY_1to1_004": [
+        "REC_0007",
+        "REC_0008"
+      ],
+      "GT_HAPPY_1to1_005": [
+        "REC_0009",
+        "REC_0010"
+      ],
+      "GT_HAPPY_1to1_006": [
+        "REC_0011",
+        "REC_0012"
+      ],
+      "GT_HAPPY_1to1_007": [
+        "REC_0013",
+        "REC_0014"
+      ],
+      "GT_HAPPY_1to1_008": [
+        "REC_0015",
+        "REC_0016"
+      ],
+      "GT_HAPPY_1to1_009": [
+        "REC_0017",
+        "REC_0018"
+      ],
+      "GT_HAPPY_1to1_010": [
+        "REC_0019",
+        "REC_0020"
+      ],
+      "GT_HAPPY_1to1_011": [
+        "REC_0021",
+        "REC_0022"
+      ],
+      "GT_HAPPY_1to1_012": [
+        "REC_0023",
+        "REC_0024"
+      ],
+      "GT_HAPPY_1to1_013": [
+        "REC_0025",
+        "REC_0026"
+      ],
+      "GT_HAPPY_1to1_014": [
+        "REC_0027",
+        "REC_0028"
+      ],
+      "GT_HAPPY_1to1_015": [
+        "REC_0029",
+        "REC_0030"
+      ],
+      "GT_HAPPY_1to1_016": [
+        "REC_0031",
+        "REC_0032"
+      ],
+      "GT_HAPPY_1to1_017": [
+        "REC_0033",
+        "REC_0034"
+      ],
+      "GT_HAPPY_1to1_018": [
+        "REC_0035",
+        "REC_0036"
+      ],
+      "GT_HAPPY_1to1_019": [
+        "REC_0037",
+        "REC_0038"
+      ],
+      "GT_HAPPY_1to1_020": [
+        "REC_0039",
+        "REC_0040"
+      ],
+      "GT_HAPPY_1to1_021": [
+        "REC_0041",
+        "REC_0042"
+      ],
+      "GT_HAPPY_1to1_022": [
+        "REC_0043",
+        "REC_0044"
+      ],
+      "GT_HAPPY_1to1_023": [
+        "REC_0045",
+        "REC_0046"
+      ],
+      "GT_HAPPY_1to1_024": [
+        "REC_0047",
+        "REC_0048"
+      ],
+      "GT_HAPPY_1to1_025": [
+        "REC_0049",
+        "REC_0050"
+      ],
+      "GT_HAPPY_1to1_026": [
+        "REC_0051",
+        "REC_0052"
+      ],
+      "GT_HAPPY_1to1_027": [
+        "REC_0053",
+        "REC_0054"
+      ],
+      "GT_HAPPY_1to1_028": [
+        "REC_0055",
+        "REC_0056"
+      ],
+      "GT_HAPPY_1to1_029": [
+        "REC_0057",
+        "REC_0058"
+      ],
+      "GT_HAPPY_1to1_030": [
+        "REC_0059",
+        "REC_0060"
+      ],
+      "GT_HAPPY_1to1_031": [
+        "REC_0061",
+        "REC_0062"
+      ],
+      "GT_HAPPY_1to1_032": [
+        "REC_0063",
+        "REC_0064"
+      ],
+      "GT_HAPPY_1to1_033": [
+        "REC_0065",
+        "REC_0066"
+      ],
+      "GT_HAPPY_1to1_034": [
+        "REC_0067",
+        "REC_0068"
+      ],
+      "GT_HAPPY_1to1_035": [
+        "REC_0069",
+        "REC_0070"
+      ],
+      "GT_HAPPY_1to1_036": [
+        "REC_0071",
+        "REC_0072"
+      ],
+      "GT_HAPPY_1to1_037": [
+        "REC_0073",
+        "REC_0074"
+      ],
+      "GT_HAPPY_1to1_038": [
+        "REC_0075",
+        "REC_0076"
+      ],
+      "GT_HAPPY_1to1_039": [
+        "REC_0077",
+        "REC_0078"
+      ],
+      "GT_HAPPY_1to1_040": [
+        "REC_0079",
+        "REC_0080"
+      ],
+      "GT_HAPPY_1to1_041": [
+        "REC_0081",
+        "REC_0082"
+      ],
+      "GT_HAPPY_1to1_042": [
+        "REC_0083",
+        "REC_0084"
+      ],
+      "GT_HAPPY_1to1_043": [
+        "REC_0085",
+        "REC_0086"
+      ],
+      "GT_HAPPY_1to1_044": [
+        "REC_0087",
+        "REC_0088"
+      ],
+      "GT_HAPPY_1to1_045": [
+        "REC_0089",
+        "REC_0090"
+      ],
+      "GT_HAPPY_1to1to1_001": [
+        "REC_0091",
+        "REC_0092",
+        "REC_0093"
+      ],
+      "GT_HAPPY_1to1to1_002": [
+        "REC_0094",
+        "REC_0095",
+        "REC_0096"
+      ],
+      "GT_HAPPY_1to1to1_003": [
+        "REC_0097",
+        "REC_0098",
+        "REC_0099"
+      ],
+      "GT_HAPPY_1to1to1_004": [
+        "REC_0100",
+        "REC_0101",
+        "REC_0102"
+      ],
+      "GT_HAPPY_1to1to1_005": [
+        "REC_0103",
+        "REC_0104",
+        "REC_0105"
+      ],
+      "GT_HAPPY_1to1to1_006": [
+        "REC_0106",
+        "REC_0107",
+        "REC_0108"
+      ],
+      "GT_HAPPY_1to1to1_007": [
+        "REC_0109",
+        "REC_0110",
+        "REC_0111"
+      ],
+      "GT_HAPPY_1to1to1_008": [
+        "REC_0112",
+        "REC_0113",
+        "REC_0114"
+      ],
+      "GT_HAPPY_1to1to1_009": [
+        "REC_0115",
+        "REC_0116",
+        "REC_0117"
+      ],
+      "GT_HAPPY_1to1to1_010": [
+        "REC_0118",
+        "REC_0119",
+        "REC_0120"
+      ],
+      "GT_HAPPY_1to1to1_011": [
+        "REC_0121",
+        "REC_0122",
+        "REC_0123"
+      ],
+      "GT_HAPPY_1to1to1_012": [
+        "REC_0124",
+        "REC_0125",
+        "REC_0126"
+      ],
+      "GT_HAPPY_1to1to1_013": [
+        "REC_0127",
+        "REC_0128",
+        "REC_0129"
+      ],
+      "GT_HAPPY_1to1to1_014": [
+        "REC_0130",
+        "REC_0131",
+        "REC_0132"
+      ],
+      "GT_HAPPY_1to1to1_015": [
+        "REC_0133",
+        "REC_0134",
+        "REC_0135"
+      ],
+      "GT_CLUSTER_TIMEOFFSET_01": [
+        "REC_0136",
+        "REC_0137"
+      ],
+      "GT_CLUSTER_TIMEOFFSET_02": [
+        "REC_0138",
+        "REC_0139"
+      ],
+      "GT_CLUSTER_TIMEOFFSET_03": [
+        "REC_0140",
+        "REC_0141"
+      ],
+      "GT_CLUSTER_TIMEOFFSET_04": [
+        "REC_0142",
+        "REC_0143"
+      ],
+      "GT_CLUSTER_TIMEOFFSET_05": [
+        "REC_0144",
+        "REC_0145"
+      ],
+      "GT_CLUSTER_TIMEOFFSET_06": [
+        "REC_0146",
+        "REC_0147"
+      ],
+      "GT_CLUSTER_FEE_01": [
+        "REC_0148",
+        "REC_0149"
+      ],
+      "GT_CLUSTER_FEE_02": [
+        "REC_0150",
+        "REC_0151"
+      ],
+      "GT_CLUSTER_FEE_03": [
+        "REC_0152",
+        "REC_0153"
+      ],
+      "GT_CLUSTER_FEE_04": [
+        "REC_0154",
+        "REC_0155"
+      ],
+      "GT_CLUSTER_FEE_05": [
+        "REC_0156",
+        "REC_0157"
+      ],
+      "GT_CLUSTER_FEE_06": [
+        "REC_0158",
+        "REC_0159"
+      ],
+      "GT_CLUSTER_MANY_TO_ONE_01": [
+        "REC_0160",
+        "REC_0161",
+        "REC_0162",
+        "REC_0163",
+        "REC_0164",
+        "REC_0165",
+        "REC_0166",
+        "REC_0167",
+        "REC_0168"
+      ]
+    },
+    "ground_truth_exceptions": {
+      "REC_0169": "AMOUNT_OUT_OF_TOLERANCE",
+      "REC_0170": "AMOUNT_OUT_OF_TOLERANCE",
+      "REC_0171": "AMOUNT_OUT_OF_TOLERANCE",
+      "REC_0172": "AMOUNT_OUT_OF_TOLERANCE",
+      "REC_0173": "AMOUNT_OUT_OF_TOLERANCE",
+      "REC_0174": "AMOUNT_OUT_OF_TOLERANCE",
+      "REC_0175": "MISSING_REF",
+      "REC_0176": "MISSING_REF",
+      "REC_0177": "MISSING_REF",
+      "REC_0178": "MISSING_REF",
+      "REC_0179": "MISSING_REF",
+      "REC_0180": "MISSING_REF",
+      "REC_0181": "DUPLICATE_ENTRY",
+      "REC_0182": "DUPLICATE_ENTRY",
+      "REC_0183": "TRUE_SINGLETON",
+      "REC_0184": "TRUE_SINGLETON",
+      "REC_0185": "TRUE_SINGLETON",
+      "REC_0186": "TRUE_SINGLETON",
+      "REC_0187": "TRUE_SINGLETON",
+      "REC_0188": "TRUE_SINGLETON",
+      "REC_0189": "TRUE_SINGLETON",
+      "REC_0190": "TRUE_SINGLETON",
+      "REC_0191": "TRUE_SINGLETON",
+      "REC_0192": "TRUE_SINGLETON",
+      "REC_0193": "TRUE_SINGLETON",
+      "REC_0194": "TRUE_SINGLETON",
+      "REC_0195": "TRUE_SINGLETON",
+      "REC_0196": "TRUE_SINGLETON",
+      "REC_0197": "TRUE_SINGLETON",
+      "REC_0198": "TRUE_SINGLETON",
+      "REC_0199": "TRUE_SINGLETON",
+      "REC_0200": "TRUE_SINGLETON"
+    }
+  }
+}
