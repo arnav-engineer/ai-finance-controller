@@ -74,7 +74,6 @@ if "pipeline_complete" not in st.session_state:
 
 
 # --- SIDEBAR: PARAMETERS & CONTROL PANEL ---
-st.sidebar.image("https://img.icons8.com/color/96/000000/pos-terminal.png", width=64)
 st.sidebar.title("Control Panel")
 st.sidebar.caption("AI Finance Controller (Track 04)")
 
@@ -341,7 +340,7 @@ elif st.session_state.step == 4:
             st.caption(f"Displaying {len(df_unmatched_p3)} residual unmatched records after Pass 3 execution.")
             st.dataframe(df_unmatched_p3, use_container_width=True, height=250)
         else:
-            st.info("🎉 All records in this batch have been successfully reconciled! Zero remaining unmatched transactions.")
+            st.info("All records in this batch have been successfully reconciled! Zero remaining unmatched transactions.")
 
         st.divider()
         if st.button("Proceed to Step 5: Human-in-the-Loop & Agent Chat ->"):
@@ -390,7 +389,7 @@ elif st.session_state.step == 5:
             if cli.groq_client:
                 with st.spinner("Groq API reasoning from audit facts..."):
                     prompt = f"Why didn't record {selected_rec} match in Pass 1? Audit evidence: {json.dumps(history)}"
-                    candidate_models = ["openai/gpt-oss-120b", "llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+                    candidate_models = ["openai/gpt-oss-120b"]
                     res = None
                     last_err = None
                     for model in candidate_models:

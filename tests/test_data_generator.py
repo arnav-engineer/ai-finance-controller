@@ -29,3 +29,11 @@ def test_synthetic_data_generator_200_batch():
     assert len(records) == 200
     sources = {r["source_type"] for r in records}
     assert sources == {"GATEWAY", "BANK", "LEDGER"}
+
+
+def test_synthetic_data_generator_dynamic_batch_sizes():
+    """Verifies dynamic batch size generation for non-standard sizes like 80, 100, 150."""
+    generator = SyntheticDataGenerator(seed=789)
+    for target_size in (10, 20, 80, 100, 150):
+        records, _manifest = generator.generate_batch(f"batch_{target_size}", total_records=target_size)
+        assert len(records) == target_size

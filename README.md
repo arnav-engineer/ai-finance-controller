@@ -59,7 +59,7 @@ Instead of delegating execution authority to LLMs, our architecture treats LLMs 
 
 - **Zero Raw Execution Authority for LLMs**: Every state change writes to an append-only `audit_log` single source of truth in SQLite (`reconciliation.db`) before updating state tables.
 - **Sequential Streamlit Dashboard (`app.py`)**: An interactive 6-step wizard featuring batch parameter controls (default **80 data points per run**), layer-by-layer visualizations, Plotly feature space charts, live fee testing sliders, and proactive agent chat.
-- **Groq API Rate-Limit Resilience (`src/hypothesis_engine.py`)**: Multi-model candidate fallback (`openai/gpt-oss-120b` -> `llama-3.3-70b-versatile` -> `llama-3.1-8b-instant`) to smoothly handle free-tier 429 TPD token limits.
+- **Groq API Rate-Limit Resilience (`src/hypothesis_engine.py`)**: Configured to use `openai/gpt-oss-120b` as the default model for fee formula and time offset hypothesis generation.
 - **CodeCarbon Sustainability Audit (`src/carbon_tracker.py`)**: Real-time energy monitoring tracking power consumption ($kWh$) and carbon footprint ($mg CO_2\text{eq}$ / transaction).
 - **Proactive Agent Interrogation Chat**: Zero-hallucination Q&A assistant grounded 100% in factual SQLite audit trail events.
 

@@ -127,7 +127,7 @@ class HumanInTheLoopCLI:
             )
             try:
                 print("\n  [GROQ LLM INTERROGATION CHAT]:")
-                candidate_models = ["openai/gpt-oss-120b", "llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+                candidate_models = ["openai/gpt-oss-120b"]
                 res = None
                 for model in candidate_models:
                     try:
