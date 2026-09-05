@@ -292,20 +292,37 @@ elif st.session_state.step == 4:
     )
 
     if st.button("[Step 4] Run Pass 3 Groq LLM Hypothesis Engine", type="primary"):
-        hyp_engine = HypothesisEngine(conn, verbose=False)
-        pass3_results = hyp_engine.run(batch_id)
-        st.session_state.pass3_results = pass3_results
-        st.session_state.pass3_done = True
-        st.success("Pass 3 execution completed.")
+        with st.status("Groq SLM Engine Working...", expanded=True) as status:
+            st.write("Interrogating residual clusters & unclustered singletons...")
+            st.write("Querying Groq API (`groq/compound`) for fee formulas & time offset hypotheses...")
+            hyp_engine = HypothesisEngine(conn, verbose=False)
+            st.write("⚡ Compiling hypotheses and proving zero-delta math against master SQLite ledger...")
+            pass3_results = hyp_engine.run(batch_id)
+            st.session_state.pass3_results = pass3_results
+            st.session_state.pass3_done = True
+            status.update(label="Pass 3 Groq SLM Engine Execution Complete!", state="complete", expanded=False)
+        st.success("Pass 3 execution completed successfully.")
 
     if st.session_state.pass3_done:
         p3 = st.session_state.pass3_results
-        h1, h2, h3 = st.columns(3)
+        
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT record_id, source_type, amount, reference_id, external_id, timestamp FROM raw_records WHERE batch_id = ? AND status = 'UNMATCHED'",
+            (batch_id,),
+        )
+        unmatched_rows_p3 = cursor.fetchall()
+        df_unmatched_p3 = pd.DataFrame(
+            unmatched_rows_p3, columns=["Record ID", "Source", "Amount (INR)", "Reference ID", "External ID", "Timestamp"]
+        )
+
+        h1, h2, h3, h4 = st.columns(4)
         h1.metric("Hypotheses Tested", f"{p3['hypotheses_tested']}")
         h2.metric("Hypotheses Proven", f"{p3['hypotheses_proven']}")
         h3.metric("Additional Records Resolved", f"{p3['records_matched_by_hypotheses']}")
+        h4.metric("Remaining Unmatched", f"{len(df_unmatched_p3)}")
 
-        cursor = conn.cursor()
+        st.subheader("Discovered & Proven Hypotheses")
         cursor.execute(
             "SELECT hypothesis_id, hypothesis_type, parameters, cluster_id, match_rate, proven, source FROM hypotheses WHERE batch_id = ?",
             (batch_id,),
@@ -317,6 +334,14 @@ elif st.session_state.step == 4:
             status_str = "[PROVEN & VERIFIED]" if proven else "[REJECTED]"
             st.success(f"**{hid}** [{htype}] — Target: `{clid}` | Match Resolution: **{mrate*100:.1f}%** | Status: **{status_str}**")
             st.json(params)
+
+        st.divider()
+        st.subheader("Remaining Unmatched Transactions (Post-Pass 3 Exceptions)")
+        if not df_unmatched_p3.empty:
+            st.caption(f"Displaying {len(df_unmatched_p3)} residual unmatched records after Pass 3 execution.")
+            st.dataframe(df_unmatched_p3, use_container_width=True, height=250)
+        else:
+            st.info("🎉 All records in this batch have been successfully reconciled! Zero remaining unmatched transactions.")
 
         st.divider()
         if st.button("Proceed to Step 5: Human-in-the-Loop & Agent Chat ->"):

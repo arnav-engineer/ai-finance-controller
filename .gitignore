@@ -16,6 +16,7 @@ plan.md
 *.db
 *.db-journal
 *.db-wal
+*.db-shm
 
 # Environment & Secrets
 .env
