@@ -22,7 +22,7 @@ class HypothesisEngine:
     Pass 3: Pattern Discovery & Hypothesis Engine with Groq LLM Integration.
     
     1. Groq LLM Hypothesis Proposer:
-       - Uses Groq API (groq/compound) to analyze cluster diffs and propose structured hypotheses.
+       - Uses Groq API (Open OSS 120B / Llama 3.3 70B) to analyze cluster diffs and propose structured hypotheses.
        - Compiles & re-tests proposed rules deterministically against real cluster records.
     
     2. Groq LLM Exception Classifier:
@@ -186,7 +186,7 @@ class HypothesisEngine:
     def _call_groq_propose_hypothesis(
         self, cluster: dict[str, Any], records: list[dict[str, Any]]
     ) -> dict[str, Any] | None:
-        """Invokes Groq API (groq/compound) to analyze cluster diffs and propose a typed hypothesis struct."""
+        """Invokes Groq API (Open OSS 120B / Llama 3.3 70B) to analyze cluster diffs and propose a typed hypothesis struct."""
         if not self.groq_client:
             return None
 
@@ -207,12 +207,12 @@ class HypothesisEngine:
     def _safe_groq_completion(
         self, messages: list[dict[str, str]], response_format: dict[str, str] | None = None
     ) -> Any:
-        """Invokes Groq API with fallback models (groq/compound -> llama-3.3-70b-versatile -> llama-3.1-8b-instant) on 429 TPD rate limits."""
+        """Invokes Groq API with fallback open OSS models (openai/gpt-oss-120b -> llama-3.3-70b-versatile -> llama-3.1-8b-instant) on 429 TPD rate limits."""
         if not self.groq_client:
             return None
 
         candidate_models = [
-            "groq/compound",
+            "openai/gpt-oss-120b",
             "llama-3.3-70b-versatile",
             "llama-3.1-8b-instant",
         ]

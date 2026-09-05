@@ -94,7 +94,7 @@ groq_api_key = os.getenv("GROQ_API_KEY", "") or getattr(st, "secrets", {}).get("
 if groq_api_key:
     os.environ["GROQ_API_KEY"] = groq_api_key
 has_groq = bool(groq_api_key and not groq_api_key.startswith("gsk_your_"))
-st.sidebar.info(f"Groq API: {'[ACTIVE] (groq/compound)' if has_groq else '[SIMULATED] FALLBACK'}")
+st.sidebar.info(f"Groq API: {'[ACTIVE] (openai/gpt-oss-120b)' if has_groq else '[SIMULATED] FALLBACK'}")
 
 if st.sidebar.button("Start Over / Reset Pipeline"):
     st.session_state.step = 1
@@ -288,13 +288,13 @@ elif st.session_state.step == 3:
 elif st.session_state.step == 4:
     st.header("Step 4: Pass 3 — LLM Pattern Discovery (Groq API)")
     st.markdown(
-        "Interrogates residual clusters using **Groq API (`groq/compound`)** to discover fee formulas and systemic settlement patterns."
+        "Interrogates residual clusters using **Groq API (`openai/gpt-oss-120b`)** to discover fee formulas and systemic settlement patterns."
     )
 
     if st.button("[Step 4] Run Pass 3 Groq LLM Hypothesis Engine", type="primary"):
         with st.status("Groq SLM Engine Working...", expanded=True) as status:
             st.write("Interrogating residual clusters & unclustered singletons...")
-            st.write("Querying Groq API (`groq/compound`) for fee formulas & time offset hypotheses...")
+            st.write("Querying Groq API (`openai/gpt-oss-120b`) for fee formulas & time offset hypotheses...")
             hyp_engine = HypothesisEngine(conn, verbose=False)
             st.write("⚡ Compiling hypotheses and proving zero-delta math against master SQLite ledger...")
             pass3_results = hyp_engine.run(batch_id)
@@ -390,7 +390,7 @@ elif st.session_state.step == 5:
             if cli.groq_client:
                 with st.spinner("Groq API reasoning from audit facts..."):
                     prompt = f"Why didn't record {selected_rec} match in Pass 1? Audit evidence: {json.dumps(history)}"
-                    candidate_models = ["groq/compound", "llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+                    candidate_models = ["openai/gpt-oss-120b", "llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
                     res = None
                     last_err = None
                     for model in candidate_models:

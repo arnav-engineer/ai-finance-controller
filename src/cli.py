@@ -127,15 +127,23 @@ class HumanInTheLoopCLI:
             )
             try:
                 print("\n  [GROQ LLM INTERROGATION CHAT]:")
-                res = self.groq_client.chat.completions.create(
-                    model="groq/compound",
-                    messages=[
-                        {"role": "system", "content": "You are a zero-hallucination financial audit assistant."},
-                        {"role": "user", "content": prompt},
-                    ],
-                    temperature=0.1,
-                )
-                print(f"  {res.choices[0].message.content.strip()}\n")
+                candidate_models = ["openai/gpt-oss-120b", "llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+                res = None
+                for model in candidate_models:
+                    try:
+                        res = self.groq_client.chat.completions.create(
+                            model=model,
+                            messages=[
+                                {"role": "system", "content": "You are a zero-hallucination financial audit assistant."},
+                                {"role": "user", "content": prompt},
+                            ],
+                            temperature=0.1,
+                        )
+                        break
+                    except Exception:
+                        continue
+                if res:
+                    print(f"  {res.choices[0].message.content.strip()}\n")
             except Exception as e:  # noqa: BLE001
                 print(f"  [WARNING] LLM chat error: {e}")
         else:

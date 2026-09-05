@@ -97,7 +97,7 @@ In our system architecture, **the LLM is never allowed to write directly to the 
 
 ### 2.5 Hypothesis Engine & Pattern Discovery (Groq API Powered)
 - **File**: [src/hypothesis_engine.py](file:///home/arnav-gupta/Projects/ai-finance-controller/src/hypothesis_engine.py)
-- **Role**: Evaluates systemic rules against open clusters using deterministic verification + Groq API LLM integration (`groq/compound` model):
+- **Role**: Evaluates systemic rules against open clusters using deterministic verification + Groq API LLM integration (Open OSS 120B model):
   1. `MANY_TO_ONE` Settlement Aggregator: Proves that 8 Gateway payments totaling $\text{₹14,000.00}$ gross minus $2\%$ batch fee equal the $\text{₹13,720.00}$ Bank payout UTR credit. Resolves 9 records ($100\%$ cluster resolution).
   2. `PERCENTAGE_FEE` Rule: Proves $2\% \text{ gross} + \text{₹3 GST}$ fee deduction formula across 12 fee-mismatch records ($100\%$ cluster resolution).
 - **Groq API LLM Hypothesis Proposer**: For un-matched clusters, invokes Groq API to analyze residual field-level diffs and propose typed JSON hypothesis structs, which are compiled and re-tested deterministically.
