@@ -51,13 +51,41 @@ class SyntheticDataGenerator:
             count_fee = 2         # 4 records
             count_m1_gw = 3       # 4 records (3 GW + 1 Bank)
             count_singletons = 5  # 5 records -> Total = 50
-        else:
+        elif total_records == 200:
             count_1to1 = 45       # 90 records
             count_1to1to1 = 15    # 45 records
             count_timeoff = 6     # 12 records
             count_fee = 6         # 12 records
             count_m1_gw = 8       # 9 records
             count_singletons = 32 # 32 records -> Total = 200
+        else:
+            # Dynamic proportional scaling for arbitrary batch sizes (e.g. 10, 80, 100, 150)
+            count_1to1 = max(1, int(total_records * 0.20))
+            count_1to1to1 = max(1, int(total_records * 0.05)) if total_records >= 20 else 0
+            count_timeoff = max(1, int(total_records * 0.03)) if total_records >= 30 else 0
+            count_fee = max(1, int(total_records * 0.03)) if total_records >= 30 else 0
+            count_m1_gw = max(2, int(total_records * 0.04)) if total_records >= 25 else 0
+
+            m1_total = (count_m1_gw + 1) if count_m1_gw > 0 else 0
+            structured_records = (
+                (count_1to1 * 2)
+                + (count_1to1to1 * 3)
+                + (count_timeoff * 2)
+                + (count_fee * 2)
+                + m1_total
+            )
+
+            while structured_records > total_records and count_1to1 > 0:
+                count_1to1 -= 1
+                structured_records = (
+                    (count_1to1 * 2)
+                    + (count_1to1to1 * 3)
+                    + (count_timeoff * 2)
+                    + (count_fee * 2)
+                    + m1_total
+                )
+
+            count_singletons = max(0, total_records - structured_records)
 
         # --- 1. Clean 1:1 Gateway <-> Bank Matches ---
         for i in range(count_1to1):
@@ -322,32 +350,33 @@ class SyntheticDataGenerator:
             batch_gw_records.append(rec_gw["record_id"])
             records.append(rec_gw)
 
-        total_batch_fee = round(total_batch_amount * 0.02, 2)
-        net_bank_payout = round(total_batch_amount - total_batch_fee, 2)
+        if count_m1_gw > 0:
+            total_batch_fee = round(total_batch_amount * 0.02, 2)
+            net_bank_payout = round(total_batch_amount - total_batch_fee, 2)
 
-        rec_bk_settle = {
-            "record_id": f"REC_{record_counter:04d}",
-            "batch_id": batch_id,
-            "source_type": "BANK",
-            "external_id": payout_utr,
-            "reference_id": settlement_id,
-            "amount": net_bank_payout,
-            "currency": "INR",
-            "fee": 0.0,
-            "tax": 0.0,
-            "timestamp": settlement_time.isoformat(),
-            "status": "UNMATCHED",
-            "raw_data": {
-                "utr": payout_utr,
-                "settlement_id": settlement_id,
-                "description": f"RAZORPAY-SETTLEMENT-{settlement_id}-NET-{net_bank_payout}",
-            },
-            "gt_match_id": gt_id_m1,
-            "gt_exception_type": "MANY_TO_ONE",
-        }
-        record_counter += 1
-        records.append(rec_bk_settle)
-        eval_manifest["ground_truth_matches"][gt_id_m1] = batch_gw_records + [rec_bk_settle["record_id"]]
+            rec_bk_settle = {
+                "record_id": f"REC_{record_counter:04d}",
+                "batch_id": batch_id,
+                "source_type": "BANK",
+                "external_id": payout_utr,
+                "reference_id": settlement_id,
+                "amount": net_bank_payout,
+                "currency": "INR",
+                "fee": 0.0,
+                "tax": 0.0,
+                "timestamp": settlement_time.isoformat(),
+                "status": "UNMATCHED",
+                "raw_data": {
+                    "utr": payout_utr,
+                    "settlement_id": settlement_id,
+                    "description": f"RAZORPAY-SETTLEMENT-{settlement_id}-NET-{net_bank_payout}",
+                },
+                "gt_match_id": gt_id_m1,
+                "gt_exception_type": "MANY_TO_ONE",
+            }
+            record_counter += 1
+            records.append(rec_bk_settle)
+            eval_manifest["ground_truth_matches"][gt_id_m1] = batch_gw_records + [rec_bk_settle["record_id"]]
 
         # --- 6. Seeded Singletons & Exceptions ---
         for i in range(count_singletons):
