@@ -107,7 +107,7 @@ In our system architecture, **the LLM is never allowed to write directly to the 
 - **File**: [src/cli.py](file:///home/arnav-gupta/Projects/ai-finance-controller/src/cli.py)
 - **Role**: Provides an interactive terminal interface for finance ops leaders and hackathon judges:
   1. **Hypothesis Review & Approval**: Surfaces proposed systemic rules (`MANY_TO_ONE`, `PERCENTAGE_FEE`) with before/after cluster resolution rates. Human approvals log `HUMAN_APPROVED` events into `audit_log` with actor `HUMAN_OPERATOR`.
-  2. **Proactive Interrogation Chat Q&A**: Asks questions like *"Why didn't row REC_0045 match in Pass 1?"*. The system queries the SQLite `audit_log` master ledger and passes 100% factual evidence to Groq API (`groq/compound`), explaining exact 1:1 failure reasons, cluster formation, and hypothesis proofs with zero hallucination.
+  2. **Proactive Interrogation Chat Q&A**: Asks questions like *"Why didn't row REC_0045 match in Pass 1?"*. The system queries the SQLite `audit_log` master ledger and passes 100% factual evidence to Groq API (`openai/gpt-oss-120b`), explaining exact 1:1 failure reasons, cluster formation, and hypothesis proofs with zero hallucination.
   3. **Live Custom Rule Testing**: Allows operators to enter custom parameters (e.g., `fee_percent = 0.02, flat_fee = 3.0`) and test them live against database clusters before approving them.
 
 

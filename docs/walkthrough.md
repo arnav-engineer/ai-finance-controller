@@ -131,7 +131,7 @@ The 5 unmatched records were transparently categorized and displayed:
                             ▼
 ┌────────────────────────────────────────────────────────┐
 │     PASS 3: HYPOTHESIS ENGINE (Groq LLM Powered)      │
-│  Groq API (groq/compound) analyzes cluster diffs      │
+│  Groq API (openai/gpt-oss-120b) analyzes diffs         │
 │  Proves rules deterministically (8/50 Records Resolved)│
 └───────────────────────────┬────────────────────────────┘
                             │
@@ -145,7 +145,7 @@ The 5 unmatched records were transparently categorized and displayed:
 ### Key Technical Safeguards
 1. **Zero Execution Authority for LLMs**: The LLM acts as a hypothesis proposer and classifier. Every match must pass deterministic zero-delta verification against database records.
 2. **Master Append-Only Audit Log ([src/db.py](file:///home/arnav-gupta/Projects/ai-finance-controller/src/db.py))**: Every state change writes to `audit_log` in SQLite before updating state tables.
-3. **Groq API Integration ([src/hypothesis_engine.py](file:///home/arnav-gupta/Projects/ai-finance-controller/src/hypothesis_engine.py))**: Uses `groq/compound` to analyze residual field-level diffs and propose typed JSON hypothesis structs.
+3. **Groq API Integration ([src/hypothesis_engine.py](file:///home/arnav-gupta/Projects/ai-finance-controller/src/hypothesis_engine.py))**: Uses `openai/gpt-oss-120b` to analyze residual field-level diffs and propose typed JSON hypothesis structs.
 
 ---
 
